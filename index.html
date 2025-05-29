@@ -419,6 +419,29 @@
             font-size: 1.1rem;
             color: #00ff88;
             font-weight: 600;
+            text-decoration: none;
+        }
+
+        .contact-item .value:visited {
+            color: #00ff88;
+        }
+
+        .contact-item .value:hover {
+            color: #00ccff;
+        }
+
+        /* Ensure phone links are readable */
+        a[href^="tel:"] {
+            color: #00ff88 !important;
+            text-decoration: none !important;
+        }
+
+        a[href^="tel:"]:visited {
+            color: #00ff88 !important;
+        }
+
+        a[href^="tel:"]:hover {
+            color: #00ccff !important;
         }
 
         .cta-button {
@@ -518,6 +541,13 @@
                 text-align: center;
             }
             
+            .hero-text .philosophy {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+                padding: 0 1rem;
+                line-height: 1.6;
+            }
+            
             .results-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -531,6 +561,27 @@
             .contact-info {
                 flex-direction: column;
                 gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section {
+                padding: 2rem 1rem;
+            }
+            
+            .hero-text .philosophy {
+                font-size: 0.95rem;
+                padding: 0 0.5rem;
+                line-height: 1.5;
+            }
+            
+            .company-name { 
+                font-size: 2rem;
+                white-space: normal;
+            }
+            
+            .unique-value {
+                padding: 2rem 1.5rem;
             }
         }
     </style>
@@ -654,7 +705,7 @@
                 </div>
                 <div class="contact-item">
                     <div class="label">Phone</div>
-                    <div class="value">630.945.6030</div>
+                    <div class="value"><a href="tel:630.945.6030">630.945.6030</a></div>
                 </div>
                 <div class="contact-item">
                     <div class="label">Email</div>
