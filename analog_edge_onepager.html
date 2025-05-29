@@ -64,7 +64,6 @@
                 32% 35%, 32% 65%, 40% 65%, 40% 45%, 48% 45%, 48% 55%, 56% 55%, 
                 56% 50%, 70% 50%, 78% 48%, 86% 52%, 94% 50%, 100% 50%
             );
-            animation: digitalPulse 4s ease-in-out infinite;
         }
 
         .analog-wave {
@@ -75,7 +74,6 @@
             height: 46px;
             background: linear-gradient(90deg, #4ecdc4, #44a08d);
             clip-path: path('M0,23 Q15,12 30,23 T60,23 T90,23 T120,23');
-            animation: analogFlow 5s ease-in-out infinite;
         }
 
         .transition-zone {
@@ -92,7 +90,7 @@
             );
             border-radius: 28px;
             backdrop-filter: blur(5px);
-            animation: transitionBreath 6s ease-in-out infinite;
+            opacity: 0.5;
         }
 
         .logo-text {
@@ -444,6 +442,20 @@
             color: #00ccff !important;
         }
 
+        /* Ensure LinkedIn links are readable */
+        a[href*="linkedin.com"] {
+            color: #00ff88 !important;
+            text-decoration: none !important;
+        }
+
+        a[href*="linkedin.com"]:visited {
+            color: #00ff88 !important;
+        }
+
+        a[href*="linkedin.com"]:hover {
+            color: #00ccff !important;
+        }
+
         .cta-button {
             display: inline-block;
             background: linear-gradient(45deg, #00ff88, #00ccff);
@@ -620,6 +632,15 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <p>I'm Mark Hasse, founder of Analog Edge, Blue Zucchini, Human First Talent and others. I've spent years working at startups to the Fortune 5 and after decades of building proprietary hardware and software products, the one thing that has always stood out to me the most, whether in my personal or my professional life, is that the biggest breakthroughs often come from the most challenging situations. When systems fail and teams are stuck, that's where I do my best work - turning chaos into elegant solutions that perform and tying those results to the bottom line.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Results Section -->
     <section class="results-section">
         <div class="results-container">
@@ -695,9 +716,6 @@
                 <h2>Ready to Transform Your Challenges?</h2>
             </div>
             <div class="contact-text">
-                I'm Mark Hasse, founder of Analog Edge, Blue Zucchini, Human First Talent and others. I've spent years working at startups to the Fortune 5 and one thing that has always stood out to me, whether in my personal or my professional life, is that the biggest breakthroughs often come from the most challenging situations. When systems fail and teams are stuck, that's where I do my best work - turning chaos into elegant solutions that perform and tying those results to the bottom line. ROI through innovation.
-            </div>
-            <div class="contact-text">
                 Let's explore how your biggest obstacles might become your greatest opportunities. I bring decades of experience in turning around failing systems and programs across proprietary hardware and software products, healthcare, finance, energy, and infrastructure.
             </div>
             
@@ -712,15 +730,15 @@
                 </div>
                 <div class="contact-item">
                     <div class="label">Email</div>
-                    <div class="value">mark@analogedge.com</div>
+                    <div class="value">mark@hasse.me</div>
                 </div>
                 <div class="contact-item">
                     <div class="label">LinkedIn</div>
-                    <div class="value"><a href="https://linkedin.com/in/markhasse"></a>in/markhasse</a></div>
+                    <div class="value"><a href="https://linkedin.com/in/markhasse" target="_blank">linkedin.com/in/markhasse</a></div>
                 </div>
             </div>
             
-            <a href="mailto:mark@analogedge.com?subject=Exploring Transformation Opportunities" class="cta-button">Start the Conversation</a>
+            <a href="mailto:mark@hasse.me?subject=Exploring Transformation Opportunities" class="cta-button">Start the Conversation</a>
             
             <div class="copyright">
                 © 2025 The Analog Edge LLC. All rights reserved.
