@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog Edge Business Card Designs</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #f0f0f0;
+            padding: 2rem;
+            margin: 0;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .card-option {
+            text-align: center;
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .business-card {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Card Variations */
+        .card-dark-blue {
+            background: #1a1a2e;
+            color: white;
+        }
+        
+        .card-gradient-blue {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+        }
+        
+        .card-accent-green {
+            background: #1a1a2e;
+            color: white;
+            border-top: 4px solid #00ff88;
+        }
+        
+        .card-white-accent {
+            background: white;
+            color: #1a1a2e;
+            border: 1px solid #e0e0e0;
+        }
+        
+        /* Logo styling */
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .logo-symbol {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+        
+        .digital-blocks {
+            display: flex;
+            gap: 1px;
+        }
+        
+        .block {
+            width: 3px;
+            background: #00ff88;
+        }
+        .block:nth-child(1) { height: 8px; }
+        .block:nth-child(2) { height: 12px; }
+        .block:nth-child(3) { height: 6px; }
+        .block:nth-child(4) { height: 10px; }
+        
+        .transition-circle {
+            width: 12px;
+            height: 12px;
+            background: rgba(0, 255, 136, 0.3);
+            border-radius: 50%;
+            margin: 0 2px;
+        }
+        
+        .analog-wave {
+            width: 20px;
+            height: 8px;
+            background: #4ecdc4;
+            border-radius: 0 20px 20px 0;
+            position: relative;
+        }
+        
+        .analog-wave::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #4ecdc4;
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+        
+        .company-name {
+            font-size: 0.9rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+        
+        .tagline {
+            font-size: 0.4rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: -2px;
+        }
+        
+        .contact-info {
+            font-size: 0.45rem;
+            line-height: 1.4;
+            text-align: center;
+        }
+        
+        .name {
+            font-size: 0.55rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        /* Color variations for logo elements */
+        .card-white-accent .digital-blocks .block {
+            background: #00ff88;
+        }
+        
+        .card-white-accent .transition-circle {
+            background: rgba(0, 255, 136, 0.3);
+        }
+        
+        .card-white-accent .analog-wave,
+        .card-white-accent .analog-wave::before {
+            background: #4ecdc4;
+        }
+        
+        /* QR Code mockup */
+        .qr-card {
+            background: #1a1a2e;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .qr-code {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 4px;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            gap: 1px;
+            padding: 8px;
+        }
+        
+        .qr-pixel {
+            background: #1a1a2e;
+            border-radius: 1px;
+        }
+        
+        .qr-pixel:nth-child(1),
+        .qr-pixel:nth-child(2),
+        .qr-pixel:nth-child(3),
+        .qr-pixel:nth-child(7),
+        .qr-pixel:nth-child(8),
+        .qr-pixel:nth-child(9),
+        .qr-pixel:nth-child(15),
+        .qr-pixel:nth-child(17),
+        .qr-pixel:nth-child(25),
+        .qr-pixel:nth-child(31),
+        .qr-pixel:nth-child(33),
+        .qr-pixel:nth-child(41),
+        .qr-pixel:nth-child(47),
+        .qr-pixel:nth-child(49),
+        .qr-pixel:nth-child(57),
+        .qr-pixel:nth-child(58),
+        .qr-pixel:nth-child(59),
+        .qr-pixel:nth-child(63),
+        .qr-pixel:nth-child(64) {
+            background: #1a1a2e;
+        }
+        
+        .description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <!-- Option 1: Classic Dark Blue -->
+        <div class="card-option">
+            <div class="card-title">Classic Dark Blue</div>
+            <div class="business-card card-dark-blue">
+                <div class="logo-section">
+                    <div class="logo-symbol">
+                        <div class="digital-blocks">
+                            <div class="block"></div>
+                            <div class="block"></div>
+                            <div class="block"></div>
+                            <div class="block"></div>
+                        </div>
+                        <div class="transition-circle"></div>
+                        <div class="analog-wave"></div>
+                    </div>
+                    <div>
+                        <div class="company-name">ANALOG EDGE</div>
+                        <div class="tagline">Technology Transformation</div>
+                    </div>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="name">Mark Hasse</div>
+                    <div>mark@analogedge.com</div>
+                    <div>630.945.6030</div>
+                    <div>Chicago, IL</div>
+                </div>
+            </div>
+            <div class="description">Your current style with clean white text</div>
+        </div>
+        
+        <!-- Option 2: Gradient Background -->
+        <div class="card-option">
+            <div class="card-title">Gradient Blue</div>
+            <div class="business-card card-gradient-blue">
+                <div class="logo-section">
+                    <div class="logo-symbol">
+                        <div class="digital-blocks">
+                            <div class="block"></div>
+                            <div class="block"></div>
+                            <div class="block"></div>
+                            <div class="block"></div>
+                        </div>
+                        <div class="transition-circle"></div>
+                        <div class="analog-wave"></div>
+                    </div>
+                    <div>
+                        <div class="company-name">ANALOG EDGE</div>
+                        <div class="tagline">Technology Transformation</div>
+                    </div>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="name">Mark Hasse</div>
+                    <div>mark@analogedge.com</div>
+                    <div>630.945.6030</div>
+                    <div>Chicago, IL</div>
+                </div>
+            </div>
+            <div class="description">Subtle gradient adds depth while maintaining professionalism</div>
+        </div>
+        
+        <!-- Option 3: Accent Color -->
+        <div class="card-option">
+            <div class="card-title">Green Accent</div>
+            <div class="business-card card-accent-green">
+                <div class="logo-section">
+                    <div class="logo-symbol">
+                        <div class="digital-blocks">
+                            <div class="block"></div>
+                            <div class="block"></div>
+                            <div class="block"></div>
+                            <div class="block"></div>
+                        </div>
+                        <div class="transition-circle"></div>
+                        <div class="analog-wave"></div>
+                    </div>
+                    <div>
+                        <div class="company-name">ANALOG EDGE</div>
+                        <div class="tagline">Technology Transformation</div>
+                    </div>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="name">Mark Hasse</div>
+                    <div>mark@analogedge.com</div>
+                    <div>630.945.6030</div>
+                    <div>Chicago, IL</div>
+                </div>
+            </div>
+            <div class="description">Dark blue with signature green accent stripe</div>
+        </div>
+        
+        <!-- Option 4: Light Version -->
+        <div class="card-option">
+            <div class="card-title">Light Version</div>
+            <div class="business-card card-white-accent">
+                <div class="logo-section">
+                    <div class="logo-symbol">
+                        <div class="digital-blocks">
+                            <div class="block"></div>
+                            <div class="block"></div>
+                            <div class="block"></div>
+                            <div class="block"></div>
+                        </div>
+                        <div class="transition-circle"></div>
+                        <div class="analog-wave"></div>
+                    </div>
+                    <div>
+                        <div class="company-name">ANALOG EDGE</div>
+                        <div class="tagline">Technology Transformation</div>
+                    </div>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="name">Mark Hasse</div>
+                    <div>mark@analogedge.com</div>
+                    <div>630.945.6030</div>
+                    <div>Chicago, IL</div>
+                </div>
+            </div>
+            <div class="description">Clean white background for variety</div>
+        </div>
+        
+        <!-- QR Code Back Option -->
+        <div class="card-option">
+            <div class="card-title">QR Code Back</div>
+            <div class="business-card qr-card">
+                <div class="qr-code">
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                    <div class="qr-pixel"></div>
+                </div>
+            </div>
+            <div class="description">Traditional QR code for contact info</div>
+        </div>
+    </div>
+</body>
+</html>

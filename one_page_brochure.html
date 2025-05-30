@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog Edge - One-Page Brochure</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        @page {
+            size: 8.5in 11in;
+            margin: 0.5in;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: white;
+            color: #333;
+            line-height: 1.4;
+            font-size: 10pt;
+        }
+        
+        .brochure {
+            max-width: 7.5in;
+            min-height: 10in;
+            margin: 0 auto;
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-symbol {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .digital-blocks {
+            display: flex;
+            gap: 2px;
+        }
+        
+        .block {
+            width: 4px;
+            background: #00ff88;
+        }
+        .block:nth-child(1) { height: 12px; }
+        .block:nth-child(2) { height: 18px; }
+        .block:nth-child(3) { height: 8px; }
+        .block:nth-child(4) { height: 15px; }
+        
+        .transition-circle {
+            width: 16px;
+            height: 16px;
+            background: rgba(0, 255, 136, 0.3);
+            border-radius: 50%;
+            margin: 0 4px;
+        }
+        
+        .analog-wave {
+            width: 30px;
+            height: 12px;
+            background: #4ecdc4;
+            border-radius: 0 30px 30px 0;
+            position: relative;
+        }
+        
+        .analog-wave::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #4ecdc4;
+            transform: translateY(-50%);
+            border-radius: 3px;
+        }
+        
+        .header-text h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.3rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .header-text .tagline {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+        
+        /* Philosophy Section */
+        .philosophy {
+            background: #f8f9fa;
+            padding: 1.5rem 2rem;
+            border-left: 4px solid #00ff88;
+        }
+        
+        .philosophy-text {
+            font-style: italic;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #2c3e50;
+            text-align: justify;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 2rem;
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .left-column,
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .section h2 {
+            color: #1a1a2e;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #00ff88;
+        }
+        
+        .section h3 {
+            color: #00ff88;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .section p {
+            font-size: 9pt;
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+            text-align: justify;
+        }
+        
+        .section p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Results Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .result-item {
+            text-align: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .result-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #00ff88;
+            margin-bottom: 0.3rem;
+        }
+        
+        .result-label {
+            font-size: 8pt;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 0.2rem;
+        }
+        
+        .result-detail {
+            font-size: 7pt;
+            color: #6c757d;
+        }
+        
+        /* Story highlights */
+        .story-highlight {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 3px solid #4ecdc4;
+            margin-bottom: 1rem;
+        }
+        
+        .story-highlight:last-child {
+            margin-bottom: 0;
+        }
+        
+        .story-title {
+            font-weight: 600;
+            color: #1a1a2e;
+            font-size: 9pt;
+            margin-bottom: 0.5rem;
+        }
+        
+        .story-text {
+            font-size: 8pt;
+            line-height: 1.4;
+            color: #495057;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(78, 205, 196, 0.1));
+            padding: 1.5rem 2rem;
+            margin-top: auto;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .contact-text h2 {
+            color: #1a1a2e;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-text p {
+            font-size: 9pt;
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+            text-align: justify;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 9pt;
+        }
+        
+        .contact-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .contact-label {
+            font-weight: 600;
+            color: #6c757d;
+        }
+        
+        .contact-value {
+            color: #1a1a2e;
+            font-weight: 600;
+        }
+        
+        .contact-value a {
+            color: #00ff88;
+            text-decoration: none;
+        }
+        
+        .contact-value a:hover {
+            color: #4ecdc4;
+        }
+        
+        /* Print optimizations */
+        @media print {
+            body {
+                background: white !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+            
+            .brochure {
+                box-shadow: none;
+                border: none;
+            }
+            
+            .section {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="brochure">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo-symbol">
+                    <div class="digital-blocks">
+                        <div class="block"></div>
+                        <div class="block"></div>
+                        <div class="block"></div>
+                        <div class="block"></div>
+                    </div>
+                    <div class="transition-circle"></div>
+                    <div class="analog-wave"></div>
+                </div>
+                <div class="header-text">
+                    <h1>ANALOG EDGE</h1>
+                    <div class="tagline">Technology Transformation</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Philosophy -->
+        <div class="philosophy">
+            <div class="philosophy-text">
+                "The Analog Edge represents that moment where technology becomes so sophisticated it feels like a natural and seamless part of our world. Like a pencil in the hand or a heart beating, it simply is. The complex becomes intuitive and invisible."
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="left-column">
+                <!-- Unique Value Proposition -->
+                <div class="section">
+                    <h2>Where Others See Problems, I See Possibilities</h2>
+                    <p>While most consultants focus on fixing what's broken, I specialize in uncovering the hidden opportunities within your challenges. My approach transforms obstacles into advantages, turning your biggest pain points into your most significant competitive advantages through optimistic, solution-focused thinking.</p>
+                </div>
+                
+                <!-- Results -->
+                <div class="section">
+                    <h2>Proven Results</h2>
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <div class="result-number">$10M</div>
+                            <div class="result-label">New Business</div>
+                            <div class="result-detail">From failing migration</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-number">95%</div>
+                            <div class="result-label">Success Rate</div>
+                            <div class="result-detail">Up from 71% baseline</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-number">99.999%</div>
+                            <div class="result-label">Uptime</div>
+                            <div class="result-detail">From 60% availability</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-number">$5M</div>
+                            <div class="result-label">Revenue</div>
+                            <div class="result-detail">Process improvement</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-column">
+                <!-- Transformation Stories -->
+                <div class="section">
+                    <h2>Opportunity-Focused Transformations</h2>
+                    
+                    <div class="story-highlight">
+                        <div class="story-title">The "Perfect Learning Opportunity"</div>
+                        <div class="story-text">
+                            When Dell assigned me to a $2M contract about to be canceled, management said it was "the perfect place to learn because I couldn't make it any worse." That "failed" contract became a $10M success story, eventually generating almost $100M in additional client sales.
+                        </div>
+                    </div>
+                    
+                    <div class="story-highlight">
+                        <div class="story-title">From Stalled to Soaring</div>
+                        <div class="story-text">
+                            A healthcare network's $10M digital transformation had been stalled for six months with zero releases. Within 60 days, we delivered the first production releases and transformed a 30-person effort into a high-performing agile success story.
+                        </div>
+                    </div>
+                    
+                    <div class="story-highlight">
+                        <div class="story-title">Innovation Through Adversity</div>
+                        <div class="story-text">
+                            Currently developing an AI-powered resume optimization system after experiencing firsthand how broken our hiring systems are. Rather than complaining, I'm building solutions that help candidates and companies find perfect matches.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact -->
+        <div class="contact">
+            <div class="contact-content">
+                <div class="contact-text">
+                    <h2>Ready to Transform Your Challenges?</h2>
+                    <p>I'm Mark Hasse, founder of Analog Edge. I've spent years turning around failing systems and programs across healthcare, finance, energy, and infrastructure. The biggest breakthroughs often come from the most challenging situations.</p>
+                    <p>Let's explore how your biggest obstacles might become your greatest opportunities.</p>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="contact-label">Location:</span>
+                        <span class="contact-value">Chicago, IL</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Phone:</span>
+                        <span class="contact-value"><a href="tel:630.945.6030">630.945.6030</a></span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Email:</span>
+                        <span class="contact-value"><a href="mailto:mark@analogedge.com">mark@analogedge.com</a></span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">LinkedIn:</span>
+                        <span class="contact-value"><a href="https://linkedin.com/in/markhasse">markhasse</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
