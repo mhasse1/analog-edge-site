@@ -64,7 +64,6 @@
                 32% 35%, 32% 65%, 40% 65%, 40% 45%, 48% 45%, 48% 55%, 56% 55%, 
                 56% 50%, 70% 50%, 78% 48%, 86% 52%, 94% 50%, 100% 50%
             );
-            animation: digitalPulse 4s ease-in-out infinite;
         }
 
         .analog-wave {
@@ -75,7 +74,6 @@
             height: 46px;
             background: linear-gradient(90deg, #4ecdc4, #44a08d);
             clip-path: path('M0,23 Q15,12 30,23 T60,23 T90,23 T120,23');
-            animation: analogFlow 5s ease-in-out infinite;
         }
 
         .transition-zone {
@@ -92,7 +90,7 @@
             );
             border-radius: 28px;
             backdrop-filter: blur(5px);
-            animation: transitionBreath 6s ease-in-out infinite;
+            opacity: 0.5;
         }
 
         .logo-text {
@@ -124,7 +122,6 @@
         }
 
         .hero-text .philosophy {
-            text-align: justify;
             font-size: 1.1rem;
             color: #e0e0e0;
             margin-bottom: 2.5rem;
@@ -242,6 +239,7 @@
             font-weight: 700;
             color: #ffffff;
             margin-bottom: 1rem;
+            text-align: left;
         }
 
         .results-header p {
@@ -307,7 +305,6 @@
         .stories-container {
             max-width: 1000px;
             margin: 0 auto;
-            text-align: justify;
         }
 
         .stories-header {
@@ -320,6 +317,7 @@
             font-weight: 700;
             color: #ffffff;
             margin-bottom: 1rem;
+            text-align: left;
         }
 
         .story-cards {
@@ -376,7 +374,7 @@
         .contact-section {
             padding: 6rem 2rem;
             background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(78, 205, 196, 0.1));
-            text-align: justify;
+            text-align: center;
         }
 
         .contact-container {
@@ -389,6 +387,7 @@
             font-weight: 700;
             color: #ffffff;
             margin-bottom: 1rem;
+            text-align: left;
         }
 
         .contact-text {
@@ -449,16 +448,20 @@
             color: #00ccff !important;
         }
 
+        /* Ensure LinkedIn links are readable */
         a[href*="linkedin.com"] {
             color: #00ff88 !important;
             text-decoration: none !important;
         }
+
         a[href*="linkedin.com"]:visited {
             color: #00ff88 !important;
         }
+
         a[href*="linkedin.com"]:hover {
             color: #00ccff !important;
         }
+
         .cta-button {
             display: inline-block;
             background: linear-gradient(45deg, #00ff88, #00ccff);
@@ -621,7 +624,7 @@
                 </div>
                 <div class="hero-text">
                     <div class="philosophy">
-                        "The Analog Edge represents that moment where technology becomes so sophisticated it feels like a natural and seamless part of our world. Like a pencil in the hand or sand at the beach, it simply is. The complex becomes intuitive and invisible."
+                        "The Analog Edge represents that moment where technology becomes so sophisticated it feels like a natural and seamless part of our world. Like a pencil in the hand or a tree in the yard, it simply is. The complex becomes intuitive and invisible."
                     </div>
                 </div>
             </div>
@@ -631,6 +634,15 @@
                     <h2>Where Others See Problems, I See Possibilities</h2>
                     <p>While most consultants focus on fixing what's broken or even perpetuating it, I specialize in uncovering the hidden opportunities within your challenges. My approach transforms obstacles into advantages, turning your biggest pain points into your most significant competitive advantages through optimistic, solution-focused thinking that sees puzzles waiting to be solved rather than problems to be endured.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <p>I'm Mark Hasse, founder of Analog Edge, Blue Zucchini, Human First Talent and others. I've spent years working at startups to the Fortune 5 and after decades of building proprietary hardware and software products, the one thing that has always stood out to me the most, whether in my personal or my professional life, is that the biggest breakthroughs often come from the most challenging situations. When systems fail and teams are stuck, that's where I do my best work - turning chaos into elegant solutions that perform and tying those results to the bottom line.</p>
             </div>
         </div>
     </section>
@@ -710,9 +722,6 @@
                 <h2>Ready to Transform Your Challenges?</h2>
             </div>
             <div class="contact-text">
-                I'm Mark Hasse, founder of Analog Edge, Zukini Computer Systems, Human First Talent and others. I've spent years working at startups to the Fortune 5 and one thing that has always stood out to me, whether in my personal or my professional life, is that the biggest breakthroughs often come from the most challenging situations. When systems fail and teams are stuck, that's where I do my best work - turning chaos into elegant solutions that perform and tying those results to the bottom line. The best solutions deliver ROI through innovation, not by cutting.
-            </div>
-            <div class="contact-text">
                 Let's explore how your biggest obstacles might become your greatest opportunities. I bring decades of experience in turning around failing systems and programs across proprietary hardware and software products, healthcare, finance, energy, and infrastructure.
             </div>
             
@@ -727,7 +736,7 @@
                 </div>
                 <div class="contact-item">
                     <div class="label">Email</div>
-                    <div class="value">mark@analogedge.com</div>
+                    <div class="value">mark@hasse.me</div>
                 </div>
                 <div class="contact-item">
                     <div class="label">LinkedIn</div>
@@ -735,7 +744,7 @@
                 </div>
             </div>
             
-            <a href="mailto:mark@analogedge.com?subject=Exploring Transformation Opportunities" class="cta-button">Start the Conversation</a>
+            <a href="mailto:mark@hasse.me?subject=Exploring Transformation Opportunities" class="cta-button">Start the Conversation</a>
             
             <div class="copyright">
                 © 2025 The Analog Edge LLC. All rights reserved.
