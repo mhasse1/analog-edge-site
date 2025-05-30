@@ -52,17 +52,39 @@
             overflow: hidden;
         }
 
+        .integration-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #ffffff;
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat 8s linear infinite;
+        }
+
+        .particle:nth-child(1) { left: 20%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 40%; animation-delay: 5s; }
+        .particle:nth-child(3) { left: 60%; animation-delay: 2s; }
+        .particle:nth-child(4) { left: 80%; animation-delay: 7s; }
+
         .digital-wave {
             position: absolute;
             top: 47px;
             left: 0;
-            width: 85%;
+            width: 50%;
             height: 46px;
             background: linear-gradient(90deg, #00ff88, #00ccff);
             clip-path: polygon(
-                0% 50%, 8% 50%, 8% 25%, 16% 25%, 16% 75%, 24% 75%, 24% 35%, 
-                32% 35%, 32% 65%, 40% 65%, 40% 45%, 48% 45%, 48% 55%, 56% 55%, 
-                56% 50%, 70% 50%, 78% 48%, 86% 52%, 94% 50%, 100% 50%
+                0% 50%, 10% 50%, 10% 20%, 20% 20%, 20% 80%, 30% 80%, 30% 30%, 
+                40% 30%, 40% 70%, 50% 70%, 50% 40%, 60% 40%, 60% 60%, 70% 60%, 
+                70% 45%, 80% 45%, 80% 55%, 90% 55%, 90% 50%, 100% 50%
             );
             animation: digitalPulse 4s ease-in-out infinite;
         }
@@ -71,18 +93,18 @@
             position: absolute;
             top: 47px;
             right: 0;
-            width: 51%;
+            width: 50%;
             height: 46px;
             background: linear-gradient(90deg, #4ecdc4, #44a08d);
-            clip-path: path('M0,23 Q15,12 30,23 T60,23 T90,23 T120,23');
+            clip-path: path('M0,23 Q25,8 50,23 Q75,38 100,23');
             animation: analogFlow 5s ease-in-out infinite;
         }
 
         .transition-zone {
             position: absolute;
             top: 42px;
-            left: 35%;
-            width: 30%;
+            left: 40%;
+            width: 20%;
             height: 56px;
             background: linear-gradient(90deg, 
                 rgba(0,255,136,0.3) 0%, 
@@ -121,6 +143,41 @@
             font-weight: 300;
             letter-spacing: 1px;
             text-transform: uppercase;
+        }
+
+        @keyframes digitalPulse {
+            0%, 100% { opacity: 1; transform: scaleX(1); }
+            50% { opacity: 0.8; transform: scaleX(1.02); }
+        }
+
+        @keyframes analogFlow {
+            0%, 100% { transform: scaleY(1) scaleX(1); opacity: 0.9; }
+            50% { transform: scaleY(1.1) scaleX(1.05); opacity: 1; }
+        }
+
+        @keyframes transitionBreath {
+            0%, 100% { 
+                opacity: 0.3; 
+                transform: scale(0.8); 
+                border-radius: 28px;
+            }
+            50% { 
+                opacity: 0.6; 
+                transform: scale(1.4); 
+                border-radius: 50%;
+            }
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(140px); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(-20px); opacity: 0; }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .hero-text .philosophy {
@@ -645,6 +702,12 @@
                             <div class="digital-wave"></div>
                             <div class="analog-wave"></div>
                             <div class="transition-zone"></div>
+                            <div class="integration-particles">
+                                <div class="particle"></div>
+                                <div class="particle"></div>
+                                <div class="particle"></div>
+                                <div class="particle"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="logo-text">
