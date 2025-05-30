@@ -466,6 +466,20 @@
             color: #00ccff !important;
         }
 
+        /* Style for obfuscated email link */
+        .email-link {
+            color: #00ff88 !important;
+            text-decoration: none !important;
+        }
+
+        .email-link:visited {
+            color: #00ff88 !important;
+        }
+
+        .email-link:hover {
+            color: #00ccff !important;
+        }
+
         /* Ensure linkedin is readable */
         a[href*="linkedin.com"] {
             color: #00ff88 !important;
@@ -746,7 +760,11 @@
                 </div>
                 <div class="contact-item">
                     <div class="label">Email</div>
-                    <div class="value"><a href="mailto:mark@analogedge.com?subject=Exploring Transformation Opportunities">mark@analogedge.com</a></div>
+                    <div class="value">
+                        <a href="#" class="email-link" onclick="location.href='mailto:' + 'm' + 'ark' + '@' + 'analogedge' + '.com'; return false;">
+                            <span>mark</span>@<span>analogedge</span>.<span>com</span>
+                        </a>
+                    </div>
                 </div>
                 <div class="contact-item">
                     <div class="label">LinkedIn</div>
