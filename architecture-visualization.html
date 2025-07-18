@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog Edge - Architecture Visualization</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 5s ease infinite;
+        }
+        
+        .architecture-container {
+            width: 100%;
+            max-width: 800px;
+            height: 600px;
+            position: relative;
+            margin: 0 auto;
+        }
+        
+        .glass-container {
+            position: absolute;
+            width: 90%;
+            height: 95%;
+            top: 2.5%;
+            left: 5%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.1);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+            backdrop-filter: blur(3px);
+            animation: glassBreath 10s ease-in-out infinite;
+        }
+        
+        .tier-container {
+            position: absolute;
+            width: 80%;
+            height: 85%;
+            top: 7.5%;
+            left: 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .tier {
+            width: 100%;
+            height: 28%;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .tier-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .compiler-tier {
+            background: linear-gradient(90deg, rgba(0, 255, 136, 0.4), rgba(0, 204, 255, 0.4));
+            animation: tierPulse1 4s ease-in-out infinite;
+        }
+        
+        .orchestrator-tier {
+            background: linear-gradient(90deg, rgba(128, 0, 255, 0.4), rgba(78, 205, 196, 0.4));
+            animation: tierPulse2 4s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+        
+        .knowledge-tier {
+            background: linear-gradient(90deg, rgba(0, 204, 255, 0.4), rgba(0, 255, 136, 0.4));
+            animation: tierPulse3 4s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+        
+        .connector {
+            position: absolute;
+            width: 2px;
+            height: 6%;
+            background: rgba(255, 255, 255, 0.5);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .connector-1 {
+            top: 28%;
+        }
+        
+        .connector-2 {
+            top: 66%;
+        }
+        
+        /* Data particles flowing top to bottom */
+        .data-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .data-particle {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0;
+            animation: dataFlow 10s ease-in-out infinite;
+        }
+        
+        .data-particle:nth-child(1) {
+            animation-delay: 0s;
+            background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='2' y='2' width='12' height='12' fill='rgba(0, 255, 136, 0.8)' rx='2' stroke='white' stroke-width='0.5' stroke-opacity='0.5'/%3E%3C/svg%3E");
+        }
+        
+        .data-particle:nth-child(2) {
+            animation-delay: 3.33s;
+            background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='6' fill='rgba(0, 204, 255, 0.8)' stroke='white' stroke-width='0.5' stroke-opacity='0.5'/%3E%3C/svg%3E");
+        }
+        
+        .data-particle:nth-child(3) {
+            animation-delay: 6.66s;
+            background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='8,2 14,8 8,14 2,8' fill='rgba(128, 0, 255, 0.8)' stroke='white' stroke-width='0.5' stroke-opacity='0.5'/%3E%3C/svg%3E");
+        }
+        
+        /* Transformations for each tier */
+        .transformation {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+        
+        .transformation-particle {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+        
+        /* Compiler tier transformations */
+        .compiler-transformation {
+            top: 14%;
+        }
+        
+        .compiler-particle-1 {
+            background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cpath d='M5,5 L25,5 L25,25 L5,25 Z' stroke='rgba(0, 255, 136, 0.9)' stroke-width='1' stroke-dasharray='2,2'/%3E%3Ccircle cx='15' cy='15' r='3' fill='rgba(0, 255, 136, 0.7)'/%3E%3C/g%3E%3C/svg%3E");
+            animation: compilerParticle1 10s ease-in-out infinite;
+        }
+        
+        .compiler-particle-2 {
+            background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cpath d='M5,15 L25,15' stroke='rgba(0, 255, 136, 0.9)' stroke-width='1'/%3E%3Cpath d='M15,5 L15,25' stroke='rgba(0, 255, 136, 0.9)' stroke-width='1'/%3E%3Ccircle cx='15' cy='15' r='3' fill='rgba(0, 255, 136, 0.7)'/%3E%3C/g%3E%3C/svg%3E");
+            animation: compilerParticle2 10s ease-in-out infinite;
+        }
+        
+        /* Orchestrator tier transformations */
+        .orchestrator-transformation {
+            top: 50%;
+        }
+        
+        .orchestrator-particle-1 {
+            background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Crect x='5' y='5' width='20' height='20' stroke='rgba(128, 0, 255, 0.8)' stroke-width='1.5'/%3E%3Ccircle cx='15' cy='15' r='3' fill='rgba(128, 0, 255, 0.7)'/%3E%3Ccircle cx='8' cy='8' r='2' fill='rgba(128, 0, 255, 0.7)'/%3E%3Ccircle cx='22' cy='8' r='2' fill='rgba(128, 0, 255, 0.7)'/%3E%3C/g%3E%3C/svg%3E");
+            animation: orchestratorParticle1 10s ease-in-out infinite;
+        }
+        
+        .orchestrator-particle-2 {
+            background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cpath d='M15,5 L25,15 L15,25 L5,15 Z' stroke='rgba(128, 0, 255, 0.8)' stroke-width='1.5'/%3E%3Ccircle cx='15' cy='15' r='3' fill='rgba(128, 0, 255, 0.7)'/%3E%3Ccircle cx='15' cy='5' r='2' fill='rgba(128, 0, 255, 0.7)'/%3E%3Ccircle cx='15' cy='25' r='2' fill='rgba(128, 0, 255, 0.7)'/%3E%3C/g%3E%3C/svg%3E");
+            animation: orchestratorParticle2 10s ease-in-out infinite;
+        }
+        
+        /* Knowledge tier transformations */
+        .knowledge-transformation {
+            top: 86%;
+        }
+        
+        .knowledge-particle-1 {
+            background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='15' cy='15' r='10' stroke='rgba(0, 204, 255, 0.9)' stroke-width='1.5'/%3E%3Ccircle cx='15' cy='15' r='3' fill='rgba(0, 204, 255, 0.7)'/%3E%3Ccircle cx='15' cy='5' r='2' fill='rgba(0, 204, 255, 0.7)'/%3E%3Ccircle cx='25' cy='15' r='2' fill='rgba(0, 204, 255, 0.7)'/%3E%3Ccircle cx='15' cy='25' r='2' fill='rgba(0, 204, 255, 0.7)'/%3E%3Ccircle cx='5' cy='15' r='2' fill='rgba(0, 204, 255, 0.7)'/%3E%3Cpath d='M15,5 L15,15' stroke='rgba(0, 204, 255, 0.9)' stroke-width='1'/%3E%3Cpath d='M15,15 L25,15' stroke='rgba(0, 204, 255, 0.9)' stroke-width='1'/%3E%3Cpath d='M15,15 L15,25' stroke='rgba(0, 204, 255, 0.9)' stroke-width='1'/%3E%3Cpath d='M5,15 L15,15' stroke='rgba(0, 204, 255, 0.9)' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E");
+            animation: knowledgeParticle1 10s ease-in-out infinite;
+        }
+        
+        .knowledge-particle-2 {
+            background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cpath d='M5,5 L25,5 L25,25 L5,25 Z' stroke='rgba(0, 204, 255, 0.9)' stroke-width='1.5'/%3E%3Ccircle cx='15' cy='15' r='8' stroke='rgba(0, 204, 255, 0.9)' stroke-width='1'/%3E%3Ccircle cx='15' cy='15' r='3' fill='rgba(0, 204, 255, 0.7)'/%3E%3Ccircle cx='5' cy='5' r='2' fill='rgba(0, 204, 255, 0.7)'/%3E%3Ccircle cx='25' cy='5' r='2' fill='rgba(0, 204, 255, 0.7)'/%3E%3Ccircle cx='25' cy='25' r='2' fill='rgba(0, 204, 255, 0.7)'/%3E%3Ccircle cx='5' cy='25' r='2' fill='rgba(0, 204, 255, 0.7)'/%3E%3C/g%3E%3C/svg%3E");
+            animation: knowledgeParticle2 10s ease-in-out infinite;
+        }
+        
+        /* Animations */
+        @keyframes tierPulse1 {
+            0%, 100% { opacity: 0.4; transform: scaleY(1); }
+            50% { opacity: 0.6; transform: scaleY(1.02); }
+        }
+        
+        @keyframes tierPulse2 {
+            0%, 100% { opacity: 0.4; transform: scaleY(1); }
+            50% { opacity: 0.6; transform: scaleY(1.03); }
+        }
+        
+        @keyframes tierPulse3 {
+            0%, 100% { opacity: 0.4; transform: scaleY(1); }
+            50% { opacity: 0.6; transform: scaleY(1.01); }
+        }
+        
+        @keyframes glassBreath {
+            0%, 100% { opacity: 0.5; border-color: rgba(255, 255, 255, 0.2); }
+            50% { opacity: 0.7; border-color: rgba(0, 255, 136, 0.4); }
+        }
+        
+        @keyframes dataFlow {
+            0%, 100% { 
+                top: 0; 
+                opacity: 0;
+                transform: translateX(-50%) scale(0.5) rotate(0deg);
+            }
+            5% { 
+                opacity: 0.9;
+                transform: translateX(-50%) scale(1) rotate(0deg);
+            }
+            30% { 
+                top: 28%;
+                transform: translateX(-50%) scale(0.8) rotate(45deg);
+                opacity: 0.7;
+            }
+            35% {
+                top: 34%;
+                transform: translateX(-50%) scale(0.6) rotate(90deg);
+                opacity: 0.5;
+            }
+            60% { 
+                top: 66%;
+                transform: translateX(-50%) scale(0.7) rotate(135deg);
+                opacity: 0.7;
+            }
+            65% {
+                top: 72%;
+                transform: translateX(-50%) scale(0.8) rotate(180deg);
+                opacity: 0.8;
+            }
+            90% { 
+                top: 100%; 
+                opacity: 0.9;
+                transform: translateX(-50%) scale(1) rotate(360deg);
+            }
+            95%, 100% { 
+                top: 100%; 
+                opacity: 0;
+                transform: translateX(-50%) scale(1) rotate(360deg);
+            }
+        }
+        
+        @keyframes compilerParticle1 {
+            0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+            25%, 35% { opacity: 0.8; transform: scale(1) rotate(45deg); }
+            40% { opacity: 0; transform: scale(0.5) rotate(90deg); }
+        }
+        
+        @keyframes compilerParticle2 {
+            0%, 20%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+            45%, 55% { opacity: 0.8; transform: scale(1) rotate(-45deg); }
+            60% { opacity: 0; transform: scale(0.5) rotate(-90deg); }
+        }
+        
+        @keyframes orchestratorParticle1 {
+            0%, 40%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+            65%, 75% { opacity: 0.8; transform: scale(1) rotate(90deg); }
+            80% { opacity: 0; transform: scale(0.5) rotate(180deg); }
+        }
+        
+        @keyframes orchestratorParticle2 {
+            0%, 60%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+            85%, 95% { opacity: 0.8; transform: scale(1) rotate(-90deg); }
+            100% { opacity: 0; transform: scale(0.5) rotate(-180deg); }
+        }
+        
+        @keyframes knowledgeParticle1 {
+            0%, 80%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+            5%, 15% { opacity: 0.8; transform: scale(1) rotate(360deg); }
+            20% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+        }
+        
+        @keyframes knowledgeParticle2 {
+            0%, 0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+            25%, 35% { opacity: 0.8; transform: scale(1) rotate(-360deg); }
+            40% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Multi-Agent Architecture Visualization</h1>
+    
+    <div class="architecture-container">
+        <div class="glass-container"></div>
+        
+        <div class="tier-container">
+            <div class="tier compiler-tier">
+                <div class="tier-label">Compiler</div>
+            </div>
+            <div class="tier orchestrator-tier">
+                <div class="tier-label">Orchestrator</div>
+            </div>
+            <div class="tier knowledge-tier">
+                <div class="tier-label">Knowledge</div>
+            </div>
+        </div>
+        
+        <!-- Connectors between tiers -->
+        <div class="connector connector-1"></div>
+        <div class="connector connector-2"></div>
+        
+        <!-- Data particles flowing from top to bottom -->
+        <div class="data-particles">
+            <div class="data-particle"></div>
+            <div class="data-particle"></div>
+            <div class="data-particle"></div>
+        </div>
+        
+        <!-- Transformations at each level -->
+        <div class="transformation compiler-transformation">
+            <div class="transformation-particle compiler-particle-1"></div>
+            <div class="transformation-particle compiler-particle-2"></div>
+        </div>
+        
+        <div class="transformation orchestrator-transformation">
+            <div class="transformation-particle orchestrator-particle-1"></div>
+            <div class="transformation-particle orchestrator-particle-2"></div>
+        </div>
+        
+        <div class="transformation knowledge-transformation">
+            <div class="transformation-particle knowledge-particle-1"></div>
+            <div class="transformation-particle knowledge-particle-2"></div>
+        </div>
+    </div>
+</body>
+</html>

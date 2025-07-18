@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog Edge - Knowledge Graph Logo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 5s ease infinite;
+        }
+        
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .company-name {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+        
+        .logo-tagline {
+            font-size: 1.2rem;
+            color: #a0a0a0;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .logo-symbol {
+            position: relative;
+            width: 300px;
+            height: 250px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        .graph-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+        }
+        
+        .node {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #00ff88;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+            z-index: 2;
+        }
+        
+        .node-1 { 
+            left: 50%; 
+            top: 50%; 
+            transform: translate(-50%, -50%); 
+            background: rgba(0, 255, 136, 1); 
+            width: 16px; 
+            height: 16px; 
+            animation: centralNodePulse 5s ease-in-out infinite;
+        }
+        .node-2 { left: 30%; top: 30%; background: rgba(0, 204, 255, 0.9); }
+        .node-3 { left: 70%; top: 30%; background: rgba(0, 204, 255, 0.9); }
+        .node-4 { left: 20%; top: 60%; background: rgba(128, 0, 255, 0.8); }
+        .node-5 { left: 40%; top: 80%; background: rgba(0, 255, 136, 0.9); }
+        .node-6 { left: 60%; top: 80%; background: rgba(0, 255, 136, 0.9); }
+        .node-7 { left: 80%; top: 60%; background: rgba(128, 0, 255, 0.8); }
+        .node-8 { left: 40%; top: 20%; background: rgba(0, 204, 255, 0.7); }
+        .node-9 { left: 60%; top: 20%; background: rgba(0, 204, 255, 0.7); }
+        
+        .connection {
+            position: absolute;
+            height: 2px;
+            background: #00ff88;
+            transform-origin: left center;
+            z-index: 1;
+        }
+        
+        .connection-1 {
+            width: 28px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(-135deg);
+            background: linear-gradient(90deg, rgba(0, 255, 136, 0.8), rgba(0, 204, 255, 0.6));
+        }
+        
+        .connection-2 {
+            width: 28px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            background: linear-gradient(90deg, rgba(0, 255, 136, 0.8), rgba(0, 204, 255, 0.6));
+        }
+        
+        .connection-3 {
+            width: 45px;
+            left: 30%;
+            top: 30%;
+            transform: translate(0%, 0%) rotate(30deg);
+            background: linear-gradient(90deg, rgba(0, 204, 255, 0.6), rgba(128, 0, 255, 0.5));
+        }
+        
+        .connection-4 {
+            width: 25px;
+            left: 40%;
+            top: 80%;
+            transform: translate(0%, 0%) rotate(0deg);
+            background: linear-gradient(90deg, rgba(0, 255, 136, 0.7), rgba(0, 255, 136, 0.7));
+        }
+        
+        .connection-5 {
+            width: 28px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(135deg);
+            background: linear-gradient(90deg, rgba(0, 255, 136, 0.8), rgba(0, 255, 136, 0.6));
+        }
+        
+        .connection-6 {
+            width: 28px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            background: linear-gradient(90deg, rgba(0, 255, 136, 0.8), rgba(0, 255, 136, 0.6));
+        }
+        
+        .connection-7 {
+            width: 45px;
+            left: 70%;
+            top: 30%;
+            transform: translate(0%, 0%) rotate(-30deg);
+            background: linear-gradient(90deg, rgba(0, 204, 255, 0.6), rgba(128, 0, 255, 0.5));
+        }
+        
+        .connection-8 {
+            width: 20px;
+            left: 40%;
+            top: 20%;
+            transform: translate(0%, 0%) rotate(0deg);
+            background: linear-gradient(90deg, rgba(0, 204, 255, 0.6), rgba(0, 204, 255, 0.6));
+        }
+        
+        .connection-9 {
+            width: 20px;
+            left: 30%;
+            top: 30%;
+            transform: translate(0%, 0%) rotate(-45deg);
+            background: linear-gradient(90deg, rgba(0, 204, 255, 0.6), rgba(0, 204, 255, 0.6));
+        }
+        
+        .connection-10 {
+            width: 20px;
+            left: 70%;
+            top: 30%;
+            transform: translate(0%, 0%) rotate(45deg);
+            background: linear-gradient(90deg, rgba(0, 204, 255, 0.6), rgba(0, 204, 255, 0.6));
+        }
+        
+        .graph-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+        }
+        
+        .graph-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(0, 255, 136, 0.8);
+            border-radius: 50%;
+            animation: graphParticleMove 10s linear infinite;
+            box-shadow: 0 0 8px rgba(0, 255, 136, 0.3);
+        }
+        
+        .graph-particle:nth-child(1) { left: 30%; top: 30%; animation-delay: 0s; }
+        .graph-particle:nth-child(2) { left: 70%; top: 30%; animation-delay: 2s; }
+        .graph-particle:nth-child(3) { left: 20%; top: 60%; animation-delay: 4s; }
+        .graph-particle:nth-child(4) { left: 80%; top: 60%; animation-delay: 6s; }
+        .graph-particle:nth-child(5) { left: 40%; top: 80%; animation-delay: 8s; }
+        .graph-particle:nth-child(6) { left: 40%; top: 20%; animation-delay: 1s; }
+        .graph-particle:nth-child(7) { left: 60%; top: 20%; animation-delay: 3s; }
+        .graph-particle:nth-child(8) { left: 60%; top: 80%; animation-delay: 5s; }
+        
+        /* Circle aura that pulses */
+        .aura {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, 
+                rgba(0, 255, 136, 0.1) 0%, 
+                rgba(0, 204, 255, 0.05) 30%, 
+                rgba(128, 0, 255, 0.03) 60%, 
+                transparent 70%);
+            animation: auraPulse 8s ease-in-out infinite;
+            top: 0;
+            left: 0;
+            transform: scale(1.5);
+        }
+        
+        /* Animations */
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        @keyframes graphParticleMove {
+            0% { transform: scale(1) translate(0, 0); opacity: 0; }
+            10% { opacity: 1; }
+            50% { transform: scale(0.8) translate(80px, 15px); }
+            90% { opacity: 1; }
+            100% { transform: scale(1) translate(0, 0); opacity: 0; }
+        }
+        
+        @keyframes centralNodePulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 15px rgba(0, 255, 136, 0.5); }
+            50% { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 0 30px rgba(0, 255, 136, 0.8); }
+        }
+        
+        @keyframes auraPulse {
+            0%, 100% { opacity: 0.3; transform: scale(1.5); }
+            50% { opacity: 0.6; transform: scale(2); }
+        }
+        
+        /* Logo Variations */
+        .logo-variations {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 4rem;
+        }
+        
+        .logo-variation {
+            text-align: center;
+        }
+        
+        .variation-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #00ff88;
+        }
+        
+        .variation-logo {
+            position: relative;
+            width: 200px;
+            height: 160px;
+            margin: 0 auto;
+        }
+        
+        /* Dark version */
+        .dark-version {
+            background: rgba(10, 10, 26, 0.8);
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        /* Light version */
+        .light-version {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        .light-version .node {
+            box-shadow: 0 0 15px rgba(0, 204, 255, 0.5);
+        }
+        
+        .light-version .node-1 {
+            background: rgba(0, 204, 255, 1);
+        }
+        
+        .light-version .connection-1,
+        .light-version .connection-2,
+        .light-version .connection-5,
+        .light-version .connection-6 {
+            background: linear-gradient(90deg, rgba(0, 204, 255, 0.8), rgba(0, 204, 255, 0.6));
+        }
+        
+        .light-version .graph-particle {
+            background: rgba(0, 204, 255, 0.8);
+            box-shadow: 0 0 8px rgba(0, 204, 255, 0.3);
+        }
+        
+        /* Simplified version */
+        .simplified-version {
+            background: transparent;
+        }
+        
+        .simplified-version .graph-container {
+            background: none;
+        }
+        
+        .simplified-version .node {
+            display: none;
+        }
+        
+        .simplified-version .node-1 {
+            display: block;
+            width: 20px;
+            height: 20px;
+        }
+        
+        .simplified-version .connection {
+            display: none;
+        }
+        
+        .simplified-version .connection-1,
+        .simplified-version .connection-2,
+        .simplified-version .connection-5,
+        .simplified-version .connection-6 {
+            display: block;
+            width: 70px;
+            height: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Knowledge Graph Logo</h1>
+    
+    <div class="logo-container">
+        <div class="logo-symbol">
+            <div class="aura"></div>
+            <div class="graph-container">
+                <div class="node node-1"></div>
+                <div class="node node-2"></div>
+                <div class="node node-3"></div>
+                <div class="node node-4"></div>
+                <div class="node node-5"></div>
+                <div class="node node-6"></div>
+                <div class="node node-7"></div>
+                <div class="node node-8"></div>
+                <div class="node node-9"></div>
+                
+                <div class="connection connection-1"></div>
+                <div class="connection connection-2"></div>
+                <div class="connection connection-3"></div>
+                <div class="connection connection-4"></div>
+                <div class="connection connection-5"></div>
+                <div class="connection connection-6"></div>
+                <div class="connection connection-7"></div>
+                <div class="connection connection-8"></div>
+                <div class="connection connection-9"></div>
+                <div class="connection connection-10"></div>
+                
+                <div class="graph-particles">
+                    <div class="graph-particle"></div>
+                    <div class="graph-particle"></div>
+                    <div class="graph-particle"></div>
+                    <div class="graph-particle"></div>
+                    <div class="graph-particle"></div>
+                    <div class="graph-particle"></div>
+                    <div class="graph-particle"></div>
+                    <div class="graph-particle"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="company-name">ANALOG EDGE</div>
+        <div class="logo-tagline">Technology Transformation</div>
+    </div>
+    
+    <div class="logo-variations">
+        <div class="logo-variation">
+            <div class="variation-title">Dark Background</div>
+            <div class="variation-logo dark-version">
+                <div class="graph-container">
+                    <div class="node node-1"></div>
+                    <div class="node node-2"></div>
+                    <div class="node node-3"></div>
+                    <div class="node node-4"></div>
+                    <div class="node node-5"></div>
+                    <div class="node node-6"></div>
+                    <div class="node node-7"></div>
+                    
+                    <div class="connection connection-1"></div>
+                    <div class="connection connection-2"></div>
+                    <div class="connection connection-3"></div>
+                    <div class="connection connection-4"></div>
+                    <div class="connection connection-5"></div>
+                    <div class="connection connection-6"></div>
+                    <div class="connection connection-7"></div>
+                    
+                    <div class="graph-particles">
+                        <div class="graph-particle"></div>
+                        <div class="graph-particle"></div>
+                        <div class="graph-particle"></div>
+                        <div class="graph-particle"></div>
+                        <div class="graph-particle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="logo-variation">
+            <div class="variation-title">Light Background</div>
+            <div class="variation-logo light-version">
+                <div class="graph-container">
+                    <div class="node node-1"></div>
+                    <div class="node node-2"></div>
+                    <div class="node node-3"></div>
+                    <div class="node node-4"></div>
+                    <div class="node node-5"></div>
+                    <div class="node node-6"></div>
+                    <div class="node node-7"></div>
+                    
+                    <div class="connection connection-1"></div>
+                    <div class="connection connection-2"></div>
+                    <div class="connection connection-3"></div>
+                    <div class="connection connection-4"></div>
+                    <div class="connection connection-5"></div>
+                    <div class="connection connection-6"></div>
+                    <div class="connection connection-7"></div>
+                    
+                    <div class="graph-particles">
+                        <div class="graph-particle"></div>
+                        <div class="graph-particle"></div>
+                        <div class="graph-particle"></div>
+                        <div class="graph-particle"></div>
+                        <div class="graph-particle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="logo-variation">
+            <div class="variation-title">Simplified Version</div>
+            <div class="variation-logo simplified-version">
+                <div class="graph-container">
+                    <div class="node node-1"></div>
+                    <div class="node node-2"></div>
+                    <div class="node node-3"></div>
+                    <div class="node node-4"></div>
+                    <div class="node node-5"></div>
+                    <div class="node node-6"></div>
+                    <div class="node node-7"></div>
+                    
+                    <div class="connection connection-1"></div>
+                    <div class="connection connection-2"></div>
+                    <div class="connection connection-3"></div>
+                    <div class="connection connection-4"></div>
+                    <div class="connection connection-5"></div>
+                    <div class="connection connection-6"></div>
+                    <div class="connection connection-7"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

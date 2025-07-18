@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Agent Architecture - Funnel Concept</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 5s ease infinite;
+        }
+        
+        .architecture-container {
+            width: 100%;
+            max-width: 800px;
+            height: 600px;
+            position: relative;
+            margin: 0 auto;
+        }
+        
+        .glass-container {
+            position: absolute;
+            width: 90%;
+            height: 95%;
+            top: 2.5%;
+            left: 5%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.1);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+            backdrop-filter: blur(3px);
+            animation: glassBreath 10s ease-in-out infinite;
+        }
+        
+        .tier-container {
+            position: absolute;
+            width: 80%;
+            height: 85%;
+            top: 7.5%;
+            left: 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .tier {
+            width: 100%;
+            height: 28%;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .tier-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 10;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .compiler-tier {
+            background: linear-gradient(90deg, rgba(0, 255, 136, 0.3), rgba(0, 204, 255, 0.3));
+            animation: tierPulse1 4s ease-in-out infinite;
+        }
+        
+        .orchestrator-tier {
+            background: linear-gradient(90deg, rgba(128, 0, 255, 0.3), rgba(78, 205, 196, 0.3));
+            animation: tierPulse2 4s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+        
+        .knowledge-tier {
+            background: linear-gradient(90deg, rgba(0, 204, 255, 0.3), rgba(0, 255, 136, 0.3));
+            animation: tierPulse3 4s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+        
+        .connector {
+            position: absolute;
+            width: 2px;
+            height: 6%;
+            background: rgba(255, 255, 255, 0.5);
+            left: 50%;
+            transform: translateX(-50%);
+            display: none; /* Hide connectors */
+        }
+        
+        .connector-1 {
+            top: 28%;
+        }
+        
+        .connector-2 {
+            top: 66%;
+        }
+        
+        /* Multi-particle system */
+        .particles-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        /* Compiler tier particles (spheres) */
+        .compiler-particles {
+            position: absolute;
+            top: 0%;
+            width: 100%;
+            height: 28%;
+            perspective: 800px;
+        }
+        
+        .sphere {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            opacity: 0;
+            animation: sphereFlow 10s linear infinite;
+        }
+        
+        .sphere::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(0, 255, 136, 0.6));
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+        
+        .sphere:nth-child(1) { left: 30%; animation-delay: 0s; }
+        .sphere:nth-child(2) { left: 70%; animation-delay: 1s; }
+        .sphere:nth-child(3) { left: 20%; animation-delay: 2s; }
+        .sphere:nth-child(4) { left: 80%; animation-delay: 3s; }
+        .sphere:nth-child(5) { left: 40%; animation-delay: 4s; }
+        .sphere:nth-child(6) { left: 60%; animation-delay: 5s; }
+        .sphere:nth-child(7) { left: 50%; animation-delay: 6s; }
+        .sphere:nth-child(8) { left: 25%; animation-delay: 7s; }
+        .sphere:nth-child(9) { left: 75%; animation-delay: 8s; }
+        .sphere:nth-child(10) { left: 35%; animation-delay: 9s; }
+        
+        /* Orchestrator tier particles (cubes) */
+        .orchestrator-particles {
+            position: absolute;
+            top: 34%;
+            width: 100%;
+            height: 28%;
+            perspective: 800px;
+        }
+        
+        .cube {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            opacity: 0;
+            animation: cubeFlow 10s linear infinite;
+            transform-style: preserve-3d;
+        }
+        
+        .cube-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(128, 0, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 10px rgba(128, 0, 255, 0.3);
+        }
+        
+        .cube-face:nth-child(1) { transform: translateZ(10px); }
+        .cube-face:nth-child(2) { transform: rotateY(180deg) translateZ(10px); }
+        .cube-face:nth-child(3) { transform: rotateY(90deg) translateZ(10px); }
+        .cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(10px); }
+        .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(10px); }
+        .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(10px); }
+        
+        .cube:nth-child(1) { left: 30%; animation-delay: 1s; }
+        .cube:nth-child(2) { left: 45%; animation-delay: 2s; }
+        .cube:nth-child(3) { left: 60%; animation-delay: 3s; }
+        .cube:nth-child(4) { left: 70%; animation-delay: 4s; }
+        .cube:nth-child(5) { left: 40%; animation-delay: 5s; }
+        
+        /* Knowledge tier complex shape */
+        .knowledge-particles {
+            position: absolute;
+            top: 74%;
+            width: 100%;
+            height: 24%;
+            perspective: 1200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .complex-shape-container {
+            width: 70px;
+            height: 70px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: containerRotate 20s linear infinite;
+        }
+        
+        /* 3D Octahedron */
+        .octahedron {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            transform-style: preserve-3d;
+            transform: translate(-50%, -50%);
+        }
+        
+        .octahedron-face {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 30px solid rgba(0, 204, 255, 0.6);
+            transform-origin: 50% 50%;
+            transform-style: preserve-3d;
+            backface-visibility: visible; 
+            box-shadow: 0 0 15px rgba(0, 204, 255, 0.3);
+        }
+        
+        .octahedron-face::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: -30px;
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-top: 30px solid rgba(0, 204, 255, 0.6);
+            transform: rotate(180deg) translateY(-90px);
+        }
+        
+        .octahedron-face:nth-child(1) { transform: rotateX(0deg) rotateY(0deg) translateZ(0); }
+        .octahedron-face:nth-child(2) { transform: rotateX(0deg) rotateY(90deg) translateZ(0); }
+        .octahedron-face:nth-child(3) { transform: rotateX(0deg) rotateY(180deg) translateZ(0); }
+        .octahedron-face:nth-child(4) { transform: rotateX(0deg) rotateY(270deg) translateZ(0); }
+        
+        /* Node points at vertices */
+        .node-point {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(0, 255, 136, 0.9);
+            border-radius: 50%;
+            transform-style: preserve-3d;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
+        }
+        
+        /* Top and bottom vertices */
+        .node-point:nth-child(5) { transform: translate(-4px, -4px) translateY(-30px); }
+        .node-point:nth-child(6) { transform: translate(-4px, -4px) translateY(30px); }
+        
+        /* Middle vertices */
+        .node-point:nth-child(7) { transform: translate(-4px, -4px) translateX(-30px); }
+        .node-point:nth-child(8) { transform: translate(-4px, -4px) translateX(30px); }
+        .node-point:nth-child(9) { transform: translate(-4px, -4px) translateZ(-30px); }
+        .node-point:nth-child(10) { transform: translate(-4px, -4px) translateZ(30px); }
+        
+        /* Inner core (smaller octahedron) */
+        .inner-core {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            transform-style: preserve-3d;
+            transform: translate(-50%, -50%) scale(0.4);
+        }
+        
+        .inner-face {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 30px solid rgba(0, 255, 136, 0.8);
+            transform-origin: 50% 50%;
+            transform-style: preserve-3d;
+            backface-visibility: visible;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+        }
+        
+        .inner-face::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: -30px;
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-top: 30px solid rgba(0, 255, 136, 0.8);
+            transform: rotate(180deg) translateY(-90px);
+        }
+        
+        .inner-face:nth-child(1) { transform: rotateX(0deg) rotateY(0deg) translateZ(0); }
+        .inner-face:nth-child(2) { transform: rotateX(0deg) rotateY(90deg) translateZ(0); }
+        .inner-face:nth-child(3) { transform: rotateX(0deg) rotateY(180deg) translateZ(0); }
+        .inner-face:nth-child(4) { transform: rotateX(0deg) rotateY(270deg) translateZ(0); }
+        
+        /* Connection lines between inner and outer octahedrons */
+        .connection-line {
+            position: absolute;
+            width: 30px;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(0, 255, 136, 0.8), rgba(0, 204, 255, 0.8));
+            transform-style: preserve-3d;
+        }
+        
+        .connection-line:nth-child(11) { 
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateY(0deg) rotateZ(45deg);
+        }
+        
+        .connection-line:nth-child(12) { 
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateY(90deg) rotateZ(45deg);
+        }
+        
+        .connection-line:nth-child(13) { 
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateY(180deg) rotateZ(45deg);
+        }
+        
+        .connection-line:nth-child(14) { 
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateY(270deg) rotateZ(45deg);
+        }
+        
+        .connection-line:nth-child(15) { 
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(90deg) rotateZ(45deg);
+        }
+        
+        .connection-line:nth-child(16) { 
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(270deg) rotateZ(45deg);
+        }
+        
+        /* Energy particle orbiting the shape */
+        .energy-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #00ff88;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.8);
+            transform-style: preserve-3d;
+            animation: particleOrbit 8s linear infinite;
+        }
+        
+        .energy-particle:nth-child(17) {
+            animation-delay: 0s;
+        }
+        
+        .energy-particle:nth-child(18) {
+            animation-delay: 2s;
+        }
+        
+        .energy-particle:nth-child(19) {
+            animation-delay: 4s;
+        }
+        
+        .energy-particle:nth-child(20) {
+            animation-delay: 6s;
+        }
+        
+        /* Animations */
+        @keyframes tierPulse1 {
+            0%, 100% { opacity: 0.3; transform: scaleY(1); }
+            50% { opacity: 0.5; transform: scaleY(1.02); }
+        }
+        
+        @keyframes tierPulse2 {
+            0%, 100% { opacity: 0.3; transform: scaleY(1); }
+            50% { opacity: 0.5; transform: scaleY(1.03); }
+        }
+        
+        @keyframes tierPulse3 {
+            0%, 100% { opacity: 0.3; transform: scaleY(1); }
+            50% { opacity: 0.5; transform: scaleY(1.01); }
+        }
+        
+        @keyframes sphereFlow {
+            0% { 
+                top: -20px; 
+                opacity: 0;
+                transform: scale(0.5) translateX(0);
+            }
+            10% { 
+                opacity: 0.9;
+                transform: scale(1) translateX(0);
+            }
+            40% { 
+                top: 80%;
+                transform: scale(0.8) translateX(20px);
+                opacity: 0.7;
+            }
+            50% { 
+                top: 100%;
+                opacity: 0;
+                transform: scale(0.7) translateX(30px);
+            }
+            100% { 
+                top: 100%;
+                opacity: 0;
+                transform: scale(0) translateX(30px);
+            }
+        }
+        
+        @keyframes cubeFlow {
+            0% { 
+                top: -20px; 
+                opacity: 0;
+                transform: scale(0.5) rotateX(0deg) rotateY(0deg) translateX(0);
+            }
+            10% { 
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.9;
+                transform: scale(1) rotateX(45deg) rotateY(45deg) translateX(0);
+            }
+            60% { 
+                top: 80%;
+                transform: scale(0.8) rotateX(180deg) rotateY(180deg) translateX(-10px);
+                opacity: 0.7;
+            }
+            70% { 
+                top: 100%;
+                opacity: 0;
+                transform: scale(0.7) rotateX(225deg) rotateY(225deg) translateX(-15px);
+            }
+            100% { 
+                top: 100%;
+                opacity: 0;
+                transform: scale(0) rotateX(225deg) rotateY(225deg) translateX(-15px);
+            }
+        }
+        
+        @keyframes containerRotate {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            100% { transform: rotateX(360deg) rotateY(720deg); }
+        }
+        
+        @keyframes innerRotate {
+            0% { transform: translate(-50%, -50%) scale(0.4) rotateX(0deg) rotateY(0deg); }
+            100% { transform: translate(-50%, -50%) scale(0.4) rotateX(-720deg) rotateY(-360deg); }
+        }
+        
+        @keyframes particleOrbit {
+            0% { 
+                transform: rotateZ(0deg) translateX(40px) rotateX(30deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% { 
+                transform: rotateZ(360deg) translateX(40px) rotateX(30deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes glassBreath {
+            0%, 100% { opacity: 0.5; border-color: rgba(255, 255, 255, 0.2); }
+            50% { opacity: 0.7; border-color: rgba(0, 255, 136, 0.4); }
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Multi-Agent Architecture - Funnel Concept</h1>
+    
+    <div class="architecture-container">
+        <div class="glass-container"></div>
+        
+        <div class="tier-container">
+            <div class="tier compiler-tier">
+                <div class="tier-label">Compiler</div>
+            </div>
+            <div class="tier orchestrator-tier">
+                <div class="tier-label">Orchestrator</div>
+            </div>
+            <div class="tier knowledge-tier">
+                <div class="tier-label">Knowledge</div>
+            </div>
+        </div>
+        
+        <!-- Particle systems -->
+        <div class="particles-container">
+            <!-- Compiler tier particles (spheres) -->
+            <div class="compiler-particles">
+                <div class="sphere"></div>
+                <div class="sphere"></div>
+                <div class="sphere"></div>
+                <div class="sphere"></div>
+                <div class="sphere"></div>
+                <div class="sphere"></div>
+                <div class="sphere"></div>
+                <div class="sphere"></div>
+                <div class="sphere"></div>
+                <div class="sphere"></div>
+            </div>
+            
+            <!-- Orchestrator tier particles (cubes) -->
+            <div class="orchestrator-particles">
+                <div class="cube">
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                </div>
+                <div class="cube">
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                    <div class="cube-face"></div>
+                </div>
+            </div>
+            
+            <!-- Knowledge tier complex shape -->
+            <div class="knowledge-particles">
+                <div class="complex-shape-container">
+                    <!-- Outer octahedron -->
+                    <div class="octahedron">
+                        <div class="octahedron-face"></div>
+                        <div class="octahedron-face"></div>
+                        <div class="octahedron-face"></div>
+                        <div class="octahedron-face"></div>
+                    </div>
+                    
+                    <!-- Node points at vertices -->
+                    <div class="node-point"></div>
+                    <div class="node-point"></div>
+                    <div class="node-point"></div>
+                    <div class="node-point"></div>
+                    <div class="node-point"></div>
+                    <div class="node-point"></div>
+                    
+                    <!-- Inner core with counterrotation -->
+                    <div class="inner-core" style="animation: innerRotate 15s linear infinite;">
+                        <div class="inner-face"></div>
+                        <div class="inner-face"></div>
+                        <div class="inner-face"></div>
+                        <div class="inner-face"></div>
+                    </div>
+                    
+                    <!-- Connection lines -->
+                    <div class="connection-line"></div>
+                    <div class="connection-line"></div>
+                    <div class="connection-line"></div>
+                    <div class="connection-line"></div>
+                    <div class="connection-line"></div>
+                    <div class="connection-line"></div>
+                    
+                    <!-- Energy particles orbiting -->
+                    <div class="energy-particle"></div>
+                    <div class="energy-particle"></div>
+                    <div class="energy-particle"></div>
+                    <div class="energy-particle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
