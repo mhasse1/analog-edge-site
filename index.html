@@ -77,14 +77,14 @@
       .logo-hero {
         display: flex;
         align-items: center;
-        gap: 20px;
+        gap: clamp(10px, 3vw, 20px);
         margin-bottom: 3rem;
       }
 
       .logo-symbol {
         position: relative;
-        width: 300px;
-        height: 250px;
+        width: min(300px, 40vw);
+        height: min(250px, 33vw);
         overflow: hidden;
       }
 
@@ -364,7 +364,7 @@
       }
 
       .company-name {
-        font-size: 2.8rem;
+        font-size: clamp(1.8rem, 5vw, 2.8rem);
         font-weight: 800;
         background: linear-gradient(45deg, #00ff88, #00ccff, #ff6b6b, #feca57);
         background-size: 300% 300%;
@@ -374,11 +374,12 @@
         animation: gradientShift 5s ease infinite;
         letter-spacing: -1px;
         line-height: 1.1;
-        white-space: nowrap;
+        white-space: normal;
+        word-break: break-word;
       }
 
       .logo-tagline {
-        font-size: 1.1rem;
+        font-size: clamp(0.8rem, 2.5vw, 1.1rem);
         color: #a0a0a0;
         font-weight: 300;
         letter-spacing: 1px;
@@ -523,11 +524,12 @@
 
       .hero-text .philosophy {
         text-align: justify;
-        font-size: 1.1rem;
+        font-size: clamp(0.95rem, 2.5vw, 1.1rem);
         color: #e0e0e0;
         margin-bottom: 2.5rem;
         font-style: italic;
         line-height: 1.7;
+        padding: 0 clamp(0.5rem, 2vw, 1rem);
       }
 
       .hero-right {
@@ -1104,11 +1106,11 @@
 
       .architecture-title {
         text-align: center;
-        font-size: 1.5rem;
+        font-size: clamp(1rem, 3vw, 1.5rem);
         font-weight: 600;
         color: #ffffff;
-        margin-bottom: 0;
-        padding: 1.5rem 0;
+        margin-bottom: 10px;
+        padding: clamp(0.75rem, 2vw, 1.5rem) 0;
       }
 
       .glass-container {
@@ -1133,7 +1135,7 @@
         position: absolute;
         width: 80%;
         height: 85%;
-        top: 7.5%;
+        top: 10%;
         left: 10%;
         display: flex;
         flex-direction: column;
@@ -2876,9 +2878,7 @@
         }
 
         .hero-text .philosophy {
-          font-size: 1rem;
           margin-bottom: 2rem;
-          padding: 0 1rem;
           line-height: 1.6;
         }
 
@@ -2912,9 +2912,6 @@
           margin-bottom: 1rem;
         }
 
-        .company-name {
-          font-size: 2.5rem;
-        }
         .results-header h2 {
           font-size: 2.2rem;
         }
@@ -2939,15 +2936,19 @@
           padding: 2rem 1rem;
         }
 
-        .hero-text .philosophy {
-          font-size: 0.95rem;
-          padding: 0 0.5rem;
-          line-height: 1.5;
+        .logo-hero {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
         }
 
-        .company-name {
-          font-size: 2rem;
-          white-space: normal;
+        .logo-symbol {
+          width: min(200px, 60vw);
+          height: min(167px, 50vw);
+        }
+
+        .hero-text .philosophy {
+          line-height: 1.5;
         }
 
         .unique-value {
@@ -2956,6 +2957,15 @@
 
         .capability-card {
           padding: 2rem;
+        }
+
+        .tier-container {
+          top: 12%;
+          height: 82%;
+        }
+
+        .architecture-title {
+          margin-bottom: 5px;
         }
       }
     </style>
