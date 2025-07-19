@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orbital System</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        background: linear-gradient(
+          135deg,
+          #0a0a1a 0%,
+          #1a1a2e 50%,
+          #16213e 100%
+        );
+        color: #ffffff;
+        overflow: hidden;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .knowledge-container {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        height: 143px;
+        border: 1px solid rgba(0, 200, 100, 0.4);
+        border-radius: 8px;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 200, 100, 0.4),
+          rgba(0, 180, 200, 0.35)
+        );
+        box-shadow: 0 0 20px rgba(0, 200, 100, 0.25);
+        overflow: hidden;
+      }
+
+      .orbital-system {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .central-sphere {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        background: radial-gradient(circle at 30% 30%, #ffff88, #ff8800);
+        border-radius: 50%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 8px rgba(255, 255, 136, 0.8),
+          0 0 16px rgba(255, 136, 0, 0.4);
+        z-index: 10;
+      }
+
+      .orbiting-sphere {
+        position: absolute;
+        border-radius: 50%;
+        left: 50%;
+        top: 50%;
+      }
+
+      /* Three 1px orbital ellipses */
+      .orbit-ring {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        border: 0px solid rgba(0, 255, 136, 0.6);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+      }
+
+      .orbit-ring-1 {
+        width: 151px;
+        height: 40px;
+      }
+
+      .orbit-ring-2 {
+        width: 319px;
+        height: 85px;
+      }
+
+      .orbit-ring-3 {
+        width: 486px;
+        height: 129px;
+      }
+
+      /* 12px spheres at northmost points of each ellipse */
+      .orbit-sphere {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        left: 50%;
+        top: 50%;
+        pointer-events: none;
+      }
+
+      /* Orbiting spheres */
+      .dropping-sphere {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        left: 50%;
+        top: 50%;
+        opacity: 1;
+        pointer-events: none;
+        z-index: 5;
+      }
+
+      /* Inner ring spheres (2 spheres) */
+      .inner-sphere-1 {
+        background: radial-gradient(circle at 30% 30%, #ff6b6b, #c92a2a);
+        box-shadow: 0 0 8px rgba(255, 107, 107, 0.6);
+        animation: innerOrbit 8s linear infinite;
+        animation-delay: 0s;
+      }
+
+      .inner-sphere-2 {
+        background: radial-gradient(circle at 30% 30%, #4ecdc4, #2ca69b);
+        box-shadow: 0 0 8px rgba(78, 205, 196, 0.6);
+        animation: innerOrbit 8s linear infinite;
+        animation-delay: 4s;
+      }
+
+      /* Middle ring spheres (3 spheres) */
+      .middle-sphere-1 {
+        background: radial-gradient(circle at 30% 30%, #45b7d1, #2980b9);
+        box-shadow: 0 0 8px rgba(69, 183, 209, 0.6);
+        animation: middleOrbit 12s linear infinite;
+        animation-delay: 0s;
+      }
+
+      .middle-sphere-2 {
+        background: radial-gradient(circle at 30% 30%, #96ceb4, #6ab7a1);
+        box-shadow: 0 0 8px rgba(150, 206, 180, 0.6);
+        animation: middleOrbit 12s linear infinite;
+        animation-delay: 4s;
+      }
+
+      .middle-sphere-3 {
+        background: radial-gradient(circle at 30% 30%, #ffeaa7, #fdcb6e);
+        box-shadow: 0 0 8px rgba(255, 234, 167, 0.6);
+        animation: middleOrbit 12s linear infinite;
+        animation-delay: 8s;
+      }
+
+      /* Outer ring spheres (5 spheres) */
+      .outer-sphere-1 {
+        background: radial-gradient(circle at 30% 30%, #fd79a8, #e84393);
+        box-shadow: 0 0 8px rgba(253, 121, 168, 0.6);
+        animation: outerOrbit 16s linear infinite;
+        animation-delay: 0s;
+      }
+
+      .outer-sphere-2 {
+        background: radial-gradient(circle at 30% 30%, #a29bfe, #6c5ce7);
+        box-shadow: 0 0 8px rgba(162, 155, 254, 0.6);
+        animation: outerOrbit 16s linear infinite;
+        animation-delay: 3.2s;
+      }
+
+      .outer-sphere-3 {
+        background: radial-gradient(circle at 30% 30%, #ff7675, #d63031);
+        box-shadow: 0 0 8px rgba(255, 118, 117, 0.6);
+        animation: outerOrbit 16s linear infinite;
+        animation-delay: 6.4s;
+      }
+
+      .outer-sphere-4 {
+        background: radial-gradient(circle at 30% 30%, #74b9ff, #0984e3);
+        box-shadow: 0 0 8px rgba(116, 185, 255, 0.6);
+        animation: outerOrbit 16s linear infinite;
+        animation-delay: 9.6s;
+      }
+
+      .outer-sphere-5 {
+        background: radial-gradient(circle at 30% 30%, #00cec9, #00b894);
+        box-shadow: 0 0 8px rgba(0, 206, 201, 0.6);
+        animation: outerOrbit 16s linear infinite;
+        animation-delay: 12.8s;
+      }
+
+      /* Exact elliptical paths using left/top positioning */
+
+      /* Inner ring orbit (151px × 40px) */
+      @keyframes innerOrbit {
+        0% {
+          left: calc(50% + 75.5px);
+          top: 50%;
+        }
+        12.5% {
+          left: calc(50% + 53px);
+          top: calc(50% - 14px);
+        }
+        25% {
+          left: 50%;
+          top: calc(50% - 20px);
+        }
+        37.5% {
+          left: calc(50% - 53px);
+          top: calc(50% - 14px);
+        }
+        50% {
+          left: calc(50% - 75.5px);
+          top: 50%;
+        }
+        62.5% {
+          left: calc(50% - 53px);
+          top: calc(50% + 14px);
+        }
+        75% {
+          left: 50%;
+          top: calc(50% + 20px);
+        }
+        87.5% {
+          left: calc(50% + 53px);
+          top: calc(50% + 14px);
+        }
+        100% {
+          left: calc(50% + 75.5px);
+          top: 50%;
+        }
+      }
+
+      /* Middle ring orbit (319px × 85px) */
+      @keyframes middleOrbit {
+        0% {
+          left: calc(50% + 159.5px);
+          top: 50%;
+        }
+        12.5% {
+          left: calc(50% + 113px);
+          top: calc(50% - 30px);
+        }
+        25% {
+          left: 50%;
+          top: calc(50% - 42.5px);
+        }
+        37.5% {
+          left: calc(50% - 113px);
+          top: calc(50% - 30px);
+        }
+        50% {
+          left: calc(50% - 159.5px);
+          top: 50%;
+        }
+        62.5% {
+          left: calc(50% - 113px);
+          top: calc(50% + 30px);
+        }
+        75% {
+          left: 50%;
+          top: calc(50% + 42.5px);
+        }
+        87.5% {
+          left: calc(50% + 113px);
+          top: calc(50% + 30px);
+        }
+        100% {
+          left: calc(50% + 159.5px);
+          top: 50%;
+        }
+      }
+
+      /* Outer ring orbit (486px × 129px) */
+      @keyframes outerOrbit {
+        0% {
+          left: calc(50% + 243px);
+          top: 50%;
+        }
+        12.5% {
+          left: calc(50% + 172px);
+          top: calc(50% - 46px);
+        }
+        25% {
+          left: 50%;
+          top: calc(50% - 64.5px);
+        }
+        37.5% {
+          left: calc(50% - 172px);
+          top: calc(50% - 46px);
+        }
+        50% {
+          left: calc(50% - 243px);
+          top: 50%;
+        }
+        62.5% {
+          left: calc(50% - 172px);
+          top: calc(50% + 46px);
+        }
+        75% {
+          left: 50%;
+          top: calc(50% + 64.5px);
+        }
+        87.5% {
+          left: calc(50% + 172px);
+          top: calc(50% + 46px);
+        }
+        100% {
+          left: calc(50% + 243px);
+          top: 50%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="knowledge-container">
+      <div class="orbital-system">
+        <div class="central-sphere"></div>
+
+        <div class="orbit-ring orbit-ring-1"></div>
+        <div class="orbit-ring orbit-ring-2"></div>
+        <div class="orbit-ring orbit-ring-3"></div>
+
+        <!-- Inner ring spheres -->
+        <div class="dropping-sphere inner-sphere-1"></div>
+        <div class="dropping-sphere inner-sphere-2"></div>
+
+        <!-- Middle ring spheres -->
+        <div class="dropping-sphere middle-sphere-1"></div>
+        <div class="dropping-sphere middle-sphere-2"></div>
+        <div class="dropping-sphere middle-sphere-3"></div>
+
+        <!-- Outer ring spheres -->
+        <div class="dropping-sphere outer-sphere-1"></div>
+        <div class="dropping-sphere outer-sphere-2"></div>
+        <div class="dropping-sphere outer-sphere-3"></div>
+        <div class="dropping-sphere outer-sphere-4"></div>
+        <div class="dropping-sphere outer-sphere-5"></div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -104,67 +104,95 @@
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: #4169e1;
-        box-shadow: 0 0 15px rgba(65, 105, 225, 0.5);
+        background: #00ff88;
+        box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
         z-index: 2;
       }
 
-      .node-1 {
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        background: rgba(65, 105, 225, 1);
-        width: 16px;
-        height: 16px;
+      .node-1 { 
+        left: 50%; 
+        top: 50%; 
+        transform: translate(-50%, -50%); 
+        background: rgba(0, 255, 136, 1); 
+        width: 16px; 
+        height: 16px; 
         animation: centralNodePulse 5s ease-in-out infinite;
       }
-      .node-2 {
+      .node-2 { left: 30%; top: 30%; background: rgba(0, 204, 255, 0.9); }
+      .node-3 { left: 70%; top: 30%; background: rgba(0, 204, 255, 0.9); }
+      .node-4 { left: 20%; top: 60%; background: rgba(128, 0, 255, 0.8); }
+      .node-5 { left: 40%; top: 80%; background: rgba(0, 255, 136, 0.9); }
+      .node-6 { left: 60%; top: 80%; background: rgba(0, 255, 136, 0.9); }
+      .node-7 { left: 80%; top: 60%; background: rgba(128, 0, 255, 0.8); }
+      .node-8 { left: 40%; top: 20%; background: rgba(0, 204, 255, 0.7); }
+      .node-9 { left: 60%; top: 20%; background: rgba(0, 204, 255, 0.7); }
+
+      /* Override for knowledge logo only */
+      .knowledge-logo .node {
+        width: 12px;
+        height: 12px;
+      }
+
+      .knowledge-logo .node-1 {
+        width: 20px;
+        height: 20px;
+        background: rgba(65, 105, 225, 1);
+      }
+      .knowledge-logo .node-2 {
         left: 30%;
         top: 30%;
-        background: rgba(255, 20, 147, 0.9);
-        animation: nodeFloat1 12s ease-in-out infinite;
+        background: rgba(0, 204, 255, 0.9);
+        animation: ellipticalOrbit1 24s linear infinite;
+        animation-delay: 0s;
       }
-      .node-3 {
+      .knowledge-logo .node-3 {
         left: 70%;
         top: 30%;
-        background: rgba(255, 165, 0, 0.9);
-        animation: nodeFloat2 15s ease-in-out infinite;
+        background: rgba(0, 204, 255, 0.9);
+        animation: ellipticalOrbit2 24s linear infinite;
+        animation-delay: 3s;
       }
-      .node-4 {
+      .knowledge-logo .node-4 {
         left: 20%;
         top: 60%;
-        background: rgba(50, 255, 50, 0.8);
-        animation: nodeFloat3 18s ease-in-out infinite;
+        background: rgba(128, 0, 255, 0.8);
+        animation: ellipticalOrbit3 24s linear infinite;
+        animation-delay: 6s;
       }
-      .node-5 {
+      .knowledge-logo .node-5 {
         left: 40%;
         top: 80%;
-        background: rgba(255, 100, 255, 0.9);
-        animation: nodeFloat4 14s ease-in-out infinite;
+        background: rgba(0, 255, 136, 0.9);
+        animation: ellipticalOrbit4 24s linear infinite;
+        animation-delay: 9s;
       }
-      .node-6 {
+      .knowledge-logo .node-6 {
         left: 60%;
         top: 80%;
-        background: rgba(255, 255, 100, 0.9);
-        animation: nodeFloat5 16s ease-in-out infinite;
+        background: rgba(0, 255, 136, 0.9);
+        animation: ellipticalOrbit5 24s linear infinite;
+        animation-delay: 12s;
       }
-      .node-7 {
+      .knowledge-logo .node-7 {
         left: 80%;
         top: 60%;
-        background: rgba(255, 50, 50, 0.8);
-        animation: nodeFloat6 13s ease-in-out infinite;
+        background: rgba(128, 0, 255, 0.8);
+        animation: ellipticalOrbit6 24s linear infinite;
+        animation-delay: 15s;
       }
-      .node-8 {
+      .knowledge-logo .node-8 {
         left: 40%;
         top: 20%;
-        background: rgba(128, 0, 255, 0.7);
-        animation: nodeFloat7 17s ease-in-out infinite;
+        background: rgba(0, 204, 255, 0.7);
+        animation: ellipticalOrbit7 24s linear infinite;
+        animation-delay: 18s;
       }
-      .node-9 {
+      .knowledge-logo .node-9 {
         left: 60%;
         top: 20%;
-        background: rgba(255, 105, 180, 0.7);
-        animation: nodeFloat8 19s ease-in-out infinite;
+        background: rgba(0, 204, 255, 0.7);
+        animation: ellipticalOrbit8 24s linear infinite;
+        animation-delay: 21s;
       }
 
       .connection {
@@ -180,119 +208,79 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%) rotate(-135deg);
-        background: linear-gradient(
-          90deg,
-          rgba(65, 105, 225, 0.8),
-          rgba(255, 20, 147, 0.6)
-        );
+        background: linear-gradient(90deg, rgba(0, 255, 136, 0.8), rgba(0, 204, 255, 0.6));
       }
-
+      
       .connection-2 {
         width: 28px;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%) rotate(-45deg);
-        background: linear-gradient(
-          90deg,
-          rgba(65, 105, 225, 0.8),
-          rgba(255, 20, 147, 0.6)
-        );
+        background: linear-gradient(90deg, rgba(0, 255, 136, 0.8), rgba(0, 204, 255, 0.6));
       }
-
+      
       .connection-3 {
         width: 45px;
         left: 30%;
         top: 30%;
         transform: translate(0%, 0%) rotate(30deg);
-        background: linear-gradient(
-          90deg,
-          rgba(0, 204, 255, 0.6),
-          rgba(128, 0, 255, 0.5)
-        );
+        background: linear-gradient(90deg, rgba(0, 204, 255, 0.6), rgba(128, 0, 255, 0.5));
       }
-
+      
       .connection-4 {
         width: 25px;
         left: 40%;
         top: 80%;
         transform: translate(0%, 0%) rotate(0deg);
-        background: linear-gradient(
-          90deg,
-          rgba(255, 165, 0, 0.7),
-          rgba(255, 165, 0, 0.7)
-        );
+        background: linear-gradient(90deg, rgba(0, 255, 136, 0.7), rgba(0, 255, 136, 0.7));
       }
-
+      
       .connection-5 {
         width: 28px;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%) rotate(135deg);
-        background: linear-gradient(
-          90deg,
-          rgba(65, 105, 225, 0.8),
-          rgba(65, 105, 225, 0.6)
-        );
+        background: linear-gradient(90deg, rgba(0, 255, 136, 0.8), rgba(0, 255, 136, 0.6));
       }
-
+      
       .connection-6 {
         width: 28px;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%) rotate(45deg);
-        background: linear-gradient(
-          90deg,
-          rgba(65, 105, 225, 0.8),
-          rgba(65, 105, 225, 0.6)
-        );
+        background: linear-gradient(90deg, rgba(0, 255, 136, 0.8), rgba(0, 255, 136, 0.6));
       }
-
+      
       .connection-7 {
         width: 45px;
         left: 70%;
         top: 30%;
         transform: translate(0%, 0%) rotate(-30deg);
-        background: linear-gradient(
-          90deg,
-          rgba(0, 204, 255, 0.6),
-          rgba(128, 0, 255, 0.5)
-        );
+        background: linear-gradient(90deg, rgba(0, 204, 255, 0.6), rgba(128, 0, 255, 0.5));
       }
-
+      
       .connection-8 {
         width: 20px;
         left: 40%;
         top: 20%;
         transform: translate(0%, 0%) rotate(0deg);
-        background: linear-gradient(
-          90deg,
-          rgba(0, 204, 255, 0.6),
-          rgba(0, 204, 255, 0.6)
-        );
+        background: linear-gradient(90deg, rgba(0, 204, 255, 0.6), rgba(0, 204, 255, 0.6));
       }
-
+      
       .connection-9 {
         width: 20px;
         left: 30%;
         top: 30%;
         transform: translate(0%, 0%) rotate(-45deg);
-        background: linear-gradient(
-          90deg,
-          rgba(0, 204, 255, 0.6),
-          rgba(0, 204, 255, 0.6)
-        );
+        background: linear-gradient(90deg, rgba(0, 204, 255, 0.6), rgba(0, 204, 255, 0.6));
       }
-
+      
       .connection-10 {
         width: 20px;
         left: 70%;
         top: 30%;
         transform: translate(0%, 0%) rotate(45deg);
-        background: linear-gradient(
-          90deg,
-          rgba(0, 204, 255, 0.6),
-          rgba(0, 204, 255, 0.6)
-        );
+        background: linear-gradient(90deg, rgba(0, 204, 255, 0.6), rgba(0, 204, 255, 0.6));
       }
 
       .graph-particles {
@@ -306,10 +294,10 @@
         position: absolute;
         width: 4px;
         height: 4px;
-        background: rgba(65, 105, 225, 0.8);
+        background: rgba(0, 255, 136, 0.8);
         border-radius: 50%;
         animation: graphParticleMove 10s linear infinite;
-        box-shadow: 0 0 8px rgba(65, 105, 225, 0.3);
+        box-shadow: 0 0 8px rgba(0, 255, 136, 0.3);
       }
 
       .graph-particle:nth-child(1) {
@@ -358,13 +346,11 @@
         width: 100%;
         height: 100%;
         border-radius: 50%;
-        background: radial-gradient(
-          circle at center,
-          rgba(65, 105, 225, 0.1) 0%,
-          rgba(255, 20, 147, 0.05) 30%,
-          rgba(128, 0, 255, 0.03) 60%,
-          transparent 70%
-        );
+        background: radial-gradient(circle at center, 
+          rgba(0, 255, 136, 0.1) 0%, 
+          rgba(0, 204, 255, 0.05) 30%, 
+          rgba(128, 0, 255, 0.03) 60%, 
+          transparent 70%);
         animation: auraPulse 8s ease-in-out infinite;
         top: 0;
         left: 0;
@@ -423,6 +409,23 @@
         0%,
         100% {
           transform: translate(-50%, -50%) scale(1);
+          box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.2);
+          box-shadow: 0 0 30px rgba(0, 255, 136, 0.8);
+        }
+      }
+
+      /* Override for knowledge logo central node */
+      .knowledge-logo .node-1 {
+        animation: knowledgeCentralPulse 5s ease-in-out infinite;
+      }
+
+      @keyframes knowledgeCentralPulse {
+        0%,
+        100% {
+          transform: translate(-50%, -50%) scale(1);
           box-shadow: 0 0 15px rgba(65, 105, 225, 0.5);
         }
         50% {
@@ -443,60 +446,69 @@
         }
       }
 
-      @keyframes nodeFloat1 {
-        0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.9; }
-        25% { transform: translate(15px, -10px) scale(1.1); opacity: 1; }
-        50% { transform: translate(-8px, 12px) scale(0.9); opacity: 0.8; }
-        75% { transform: translate(10px, 5px) scale(1.05); opacity: 0.95; }
+      /* Counter-clockwise elliptical orbit animations for knowledge logo nodes */
+      @keyframes ellipticalOrbit1 {
+        0% { transform: translate(-60px, -60px); }
+        25% { transform: translate(60px, -60px); }
+        50% { transform: translate(60px, 60px); }
+        75% { transform: translate(-60px, 60px); }
+        100% { transform: translate(-60px, -60px); }
       }
 
-      @keyframes nodeFloat2 {
-        0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.9; }
-        30% { transform: translate(-12px, 8px) scale(0.95); opacity: 0.85; }
-        60% { transform: translate(18px, -15px) scale(1.08); opacity: 1; }
-        80% { transform: translate(-5px, -8px) scale(1.02); opacity: 0.92; }
+      @keyframes ellipticalOrbit2 {
+        0% { transform: translate(60px, -60px); }
+        25% { transform: translate(60px, 60px); }
+        50% { transform: translate(-60px, 60px); }
+        75% { transform: translate(-60px, -60px); }
+        100% { transform: translate(60px, -60px); }
       }
 
-      @keyframes nodeFloat3 {
-        0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
-        20% { transform: translate(8px, 14px) scale(1.06); opacity: 0.9; }
-        45% { transform: translate(-15px, -6px) scale(0.92); opacity: 0.75; }
-        70% { transform: translate(12px, -10px) scale(1.04); opacity: 0.88; }
+      @keyframes ellipticalOrbit3 {
+        0% { transform: translate(-90px, 30px); }
+        25% { transform: translate(30px, 90px); }
+        50% { transform: translate(90px, -30px); }
+        75% { transform: translate(-30px, -90px); }
+        100% { transform: translate(-90px, 30px); }
       }
 
-      @keyframes nodeFloat4 {
-        0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.9; }
-        35% { transform: translate(-10px, -12px) scale(1.08); opacity: 1; }
-        65% { transform: translate(16px, 8px) scale(0.94); opacity: 0.82; }
-        85% { transform: translate(-8px, 6px) scale(1.03); opacity: 0.94; }
+      @keyframes ellipticalOrbit4 {
+        0% { transform: translate(-30px, 90px); }
+        25% { transform: translate(90px, 30px); }
+        50% { transform: translate(30px, -90px); }
+        75% { transform: translate(-90px, -30px); }
+        100% { transform: translate(-30px, 90px); }
       }
 
-      @keyframes nodeFloat5 {
-        0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.9; }
-        25% { transform: translate(14px, -8px) scale(0.96); opacity: 0.85; }
-        55% { transform: translate(-11px, 13px) scale(1.07); opacity: 0.98; }
-        80% { transform: translate(7px, -5px) scale(1.01); opacity: 0.91; }
+      @keyframes ellipticalOrbit5 {
+        0% { transform: translate(30px, 90px); }
+        25% { transform: translate(-30px, -90px); }
+        50% { transform: translate(-90px, -30px); }
+        75% { transform: translate(90px, 30px); }
+        100% { transform: translate(30px, 90px); }
       }
 
-      @keyframes nodeFloat6 {
-        0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
-        40% { transform: translate(-13px, 9px) scale(1.05); opacity: 0.87; }
-        70% { transform: translate(9px, -14px) scale(0.93); opacity: 0.76; }
-        90% { transform: translate(-6px, 11px) scale(1.02); opacity: 0.84; }
+      @keyframes ellipticalOrbit6 {
+        0% { transform: translate(90px, 30px); }
+        25% { transform: translate(-90px, -30px); }
+        50% { transform: translate(-30px, -90px); }
+        75% { transform: translate(30px, 90px); }
+        100% { transform: translate(90px, 30px); }
       }
 
-      @keyframes nodeFloat7 {
-        0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
-        30% { transform: translate(11px, 16px) scale(1.04); opacity: 0.8; }
-        60% { transform: translate(-14px, -7px) scale(0.97); opacity: 0.65; }
-        85% { transform: translate(8px, -12px) scale(1.06); opacity: 0.75; }
+      @keyframes ellipticalOrbit7 {
+        0% { transform: translate(-30px, -60px); }
+        25% { transform: translate(60px, -30px); }
+        50% { transform: translate(30px, 60px); }
+        75% { transform: translate(-60px, 30px); }
+        100% { transform: translate(-30px, -60px); }
       }
 
-      @keyframes nodeFloat8 {
-        0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
-        25% { transform: translate(-9px, -11px) scale(0.98); opacity: 0.65; }
-        50% { transform: translate(17px, 6px) scale(1.09); opacity: 0.82; }
-        75% { transform: translate(-12px, 14px) scale(0.95); opacity: 0.72; }
+      @keyframes ellipticalOrbit8 {
+        0% { transform: translate(30px, -60px); }
+        25% { transform: translate(-30px, 60px); }
+        50% { transform: translate(-60px, 30px); }
+        75% { transform: translate(60px, -30px); }
+        100% { transform: translate(30px, -60px); }
       }
 
       @keyframes gradientShift {
@@ -1180,13 +1192,13 @@
       .knowledge-tier {
         background: linear-gradient(
           90deg,
-          rgba(0, 255, 136, 0.5),
-          rgba(0, 204, 255, 0.4)
+          rgba(0, 200, 100, 0.4),
+          rgba(0, 180, 200, 0.35)
         );
         animation: tierPulse3 6s ease-in-out infinite;
         animation-delay: 2s;
-        border: 1px solid rgba(0, 255, 136, 0.5);
-        box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        border: 1px solid rgba(0, 200, 100, 0.4);
+        box-shadow: 0 0 20px rgba(0, 200, 100, 0.25);
       }
 
 
@@ -1381,8 +1393,8 @@
 
       .organized-sphere {
         position: absolute;
-        width: 20px;
-        height: 20px;
+        width: 12px;
+        height: 12px;
         border-radius: 50%;
         opacity: 0;
         animation: organizedFlow 10s linear infinite;
@@ -1449,142 +1461,488 @@
         animation-delay: 3.6s;
       }
 
-      /* Knowledge tier 3D atom */
+      /* Knowledge tier - Orbital Container */
       .knowledge-particles {
         position: absolute;
-        top: 7.5%;
-        left: 10%;
-        width: 80%;
-        height: 85%;
-        perspective: 1200px;
+        top: 66%;
+        left: 0;
+        width: 100%;
+        height: 32%;
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
+        justify-content: center;
         align-items: center;
         overflow: hidden;
         z-index: 50;
         pointer-events: none;
       }
 
-      .knowledge-logo {
+      .knowledge-logo-container {
         position: relative;
-        width: 120%;
-        height: 28%;
+        width: 100%;
+        max-width: 500px;
+        height: 143px;
         overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0.7;
       }
 
-      .atom-container {
+      /* Knowledge Orbital System - Direct from orbits.html */
+      
+      .knowledge-orbital-system {
         position: relative;
-        width: 120px;
-        height: 120px;
+        width: 100%;
+        height: 100%;
       }
 
-      .nucleus {
+      .knowledge-central-sphere {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 30px;
-        height: 30px;
+        width: 24px;
+        height: 24px;
+        background: radial-gradient(circle at 30% 30%, #ffff88, #ff8800);
         border-radius: 50%;
-        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(0, 255, 136, 0.8));
-        box-shadow: 
-          0 0 20px rgba(0, 255, 136, 0.8),
-          inset 0 0 10px rgba(255, 255, 255, 0.3);
+        left: 50%;
+        top: 50%;
         transform: translate(-50%, -50%);
+        box-shadow: 0 0 8px rgba(255, 255, 136, 0.8),
+          0 0 16px rgba(255, 136, 0, 0.4);
+        opacity: 0.6;
         z-index: 10;
       }
 
-      .electron-orbit {
+      .knowledge-orbiting-sphere {
         position: absolute;
-        top: 50%;
+        border-radius: 50%;
         left: 50%;
-        transform-style: preserve-3d;
-        transform: translate(-50%, -50%);
+        top: 50%;
       }
 
-      .electron {
+      /* Three orbital ellipses */
+      .knowledge-orbit-ring {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        border: 0px solid rgba(0, 255, 136, 0.6);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+      }
+
+      .knowledge-orbit-ring-1 {
+        width: 151px;
+        height: 40px;
+      }
+
+      .knowledge-orbit-ring-2 {
+        width: 319px;
+        height: 85px;
+      }
+
+      .knowledge-orbit-ring-3 {
+        width: 486px;
+        height: 129px;
+      }
+
+      /* Orbiting spheres */
+      .knowledge-dropping-sphere {
         position: absolute;
         width: 12px;
         height: 12px;
         border-radius: 50%;
-        transition: opacity 0.3s ease, transform 0.3s ease;
+        left: 50%;
+        top: 50%;
+        opacity: 0.6;
+        pointer-events: none;
+        z-index: 5;
       }
 
-      /* First orbit - horizontal plane */
-      .orbit-1 {
-      }
-      .orbit-1 .electron {
-        animation: electronOrbit1 20s ease-in-out infinite;
-      }
-      .orbit-1 .electron:nth-child(1) {
-        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 100, 100, 0.8));
-        box-shadow: 0 0 8px rgba(255, 100, 100, 0.6);
+      /* Inner ring spheres (2 spheres) */
+      .knowledge-inner-sphere-1 {
+        background: radial-gradient(circle at 30% 30%, #ff6b6b, #c92a2a);
+        box-shadow: 0 0 8px rgba(255, 107, 107, 0.6);
+        animation: knowledgeInnerOrbit 8s linear infinite;
         animation-delay: 0s;
-      }
-      .orbit-1 .electron:nth-child(2) {
-        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(100, 255, 100, 0.8));
-        box-shadow: 0 0 8px rgba(100, 255, 100, 0.6);
-        animation-delay: 2.67s;
-      }
-      .orbit-1 .electron:nth-child(3) {
-        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(100, 100, 255, 0.8));
-        box-shadow: 0 0 8px rgba(100, 100, 255, 0.6);
-        animation-delay: 5.33s;
       }
 
-      /* Second orbit - tilted plane */
-      .orbit-2 {
-        transform: translate(-50%, -50%);
-      }
-      .orbit-2 .electron {
-        animation: electronOrbit2 25s ease-in-out infinite;
-      }
-      .orbit-2 .electron:nth-child(1) {
-        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 255, 100, 0.8));
-        box-shadow: 0 0 8px rgba(255, 255, 100, 0.6);
-        animation-delay: 0s;
-      }
-      .orbit-2 .electron:nth-child(2) {
-        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 100, 255, 0.8));
-        box-shadow: 0 0 8px rgba(255, 100, 255, 0.6);
+      .knowledge-inner-sphere-2 {
+        background: radial-gradient(circle at 30% 30%, #4ecdc4, #2ca69b);
+        box-shadow: 0 0 8px rgba(78, 205, 196, 0.6);
+        animation: knowledgeInnerOrbit 8s linear infinite;
         animation-delay: 4s;
       }
-      .orbit-2 .electron:nth-child(3) {
-        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(100, 255, 255, 0.8));
-        box-shadow: 0 0 8px rgba(100, 255, 255, 0.6);
+
+      /* Middle ring spheres (3 spheres) */
+      .knowledge-middle-sphere-1 {
+        background: radial-gradient(circle at 30% 30%, #45b7d1, #2980b9);
+        box-shadow: 0 0 8px rgba(69, 183, 209, 0.6);
+        animation: knowledgeMiddleOrbit 12s linear infinite;
+        animation-delay: 0s;
+      }
+
+      .knowledge-middle-sphere-2 {
+        background: radial-gradient(circle at 30% 30%, #96ceb4, #6ab7a1);
+        box-shadow: 0 0 8px rgba(150, 206, 180, 0.6);
+        animation: knowledgeMiddleOrbit 12s linear infinite;
+        animation-delay: 4s;
+      }
+
+      .knowledge-middle-sphere-3 {
+        background: radial-gradient(circle at 30% 30%, #ffeaa7, #fdcb6e);
+        box-shadow: 0 0 8px rgba(255, 234, 167, 0.6);
+        animation: knowledgeMiddleOrbit 12s linear infinite;
         animation-delay: 8s;
       }
 
-      /* Third orbit - vertical plane */
-      .orbit-3 {
-        transform: translate(-50%, -50%);
-      }
-      .orbit-3 .electron {
-        animation: electronOrbit3 30s ease-in-out infinite;
-      }
-      .orbit-3 .electron:nth-child(1) {
-        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 150, 100, 0.8));
-        box-shadow: 0 0 8px rgba(255, 150, 100, 0.6);
+      /* Outer ring spheres (5 spheres) */
+      .knowledge-outer-sphere-1 {
+        background: radial-gradient(circle at 30% 30%, #fd79a8, #e84393);
+        box-shadow: 0 0 8px rgba(253, 121, 168, 0.6);
+        animation: knowledgeOuterOrbit 16s linear infinite;
         animation-delay: 0s;
       }
-      .orbit-3 .electron:nth-child(2) {
-        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(150, 255, 150, 0.8));
-        box-shadow: 0 0 8px rgba(150, 255, 150, 0.6);
-        animation-delay: 5s;
+
+      .knowledge-outer-sphere-2 {
+        background: radial-gradient(circle at 30% 30%, #a29bfe, #6c5ce7);
+        box-shadow: 0 0 8px rgba(162, 155, 254, 0.6);
+        animation: knowledgeOuterOrbit 16s linear infinite;
+        animation-delay: 3.2s;
       }
-      .orbit-3 .electron:nth-child(3) {
-        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(200, 150, 255, 0.8));
-        box-shadow: 0 0 8px rgba(200, 150, 255, 0.6);
-        animation-delay: 10s;
+
+      .knowledge-outer-sphere-3 {
+        background: radial-gradient(circle at 30% 30%, #ff7675, #d63031);
+        box-shadow: 0 0 8px rgba(255, 118, 117, 0.6);
+        animation: knowledgeOuterOrbit 16s linear infinite;
+        animation-delay: 6.4s;
       }
-      .orbit-3 .electron:nth-child(4) {
-        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 200, 200, 0.8));
-        box-shadow: 0 0 8px rgba(255, 200, 200, 0.6);
-        animation-delay: 7.5s;
+
+      .knowledge-outer-sphere-4 {
+        background: radial-gradient(circle at 30% 30%, #74b9ff, #0984e3);
+        box-shadow: 0 0 8px rgba(116, 185, 255, 0.6);
+        animation: knowledgeOuterOrbit 16s linear infinite;
+        animation-delay: 9.6s;
+      }
+
+      .knowledge-outer-sphere-5 {
+        background: radial-gradient(circle at 30% 30%, #00cec9, #00b894);
+        box-shadow: 0 0 8px rgba(0, 206, 201, 0.6);
+        animation: knowledgeOuterOrbit 16s linear infinite;
+        animation-delay: 12.8s;
+      }
+
+      /* Exact elliptical paths using left/top positioning */
+
+      /* Inner ring orbit (151px × 40px) */
+      @keyframes knowledgeInnerOrbit {
+        0% {
+          left: calc(50% + 75.5px);
+          top: 50%;
+        }
+        12.5% {
+          left: calc(50% + 53px);
+          top: calc(50% - 14px);
+        }
+        25% {
+          left: 50%;
+          top: calc(50% - 20px);
+        }
+        37.5% {
+          left: calc(50% - 53px);
+          top: calc(50% - 14px);
+        }
+        50% {
+          left: calc(50% - 75.5px);
+          top: 50%;
+        }
+        62.5% {
+          left: calc(50% - 53px);
+          top: calc(50% + 14px);
+        }
+        75% {
+          left: 50%;
+          top: calc(50% + 20px);
+        }
+        87.5% {
+          left: calc(50% + 53px);
+          top: calc(50% + 14px);
+        }
+        100% {
+          left: calc(50% + 75.5px);
+          top: 50%;
+        }
+      }
+
+      /* Middle ring orbit (319px × 85px) */
+      @keyframes knowledgeMiddleOrbit {
+        0% {
+          left: calc(50% + 159.5px);
+          top: 50%;
+        }
+        12.5% {
+          left: calc(50% + 113px);
+          top: calc(50% - 30px);
+        }
+        25% {
+          left: 50%;
+          top: calc(50% - 42.5px);
+        }
+        37.5% {
+          left: calc(50% - 113px);
+          top: calc(50% - 30px);
+        }
+        50% {
+          left: calc(50% - 159.5px);
+          top: 50%;
+        }
+        62.5% {
+          left: calc(50% - 113px);
+          top: calc(50% + 30px);
+        }
+        75% {
+          left: 50%;
+          top: calc(50% + 42.5px);
+        }
+        87.5% {
+          left: calc(50% + 113px);
+          top: calc(50% + 30px);
+        }
+        100% {
+          left: calc(50% + 159.5px);
+          top: 50%;
+        }
+      }
+
+      /* Outer ring orbit (486px × 129px) */
+      @keyframes knowledgeOuterOrbit {
+        0% {
+          left: calc(50% + 243px);
+          top: 50%;
+        }
+        12.5% {
+          left: calc(50% + 172px);
+          top: calc(50% - 46px);
+        }
+        25% {
+          left: 50%;
+          top: calc(50% - 64.5px);
+        }
+        37.5% {
+          left: calc(50% - 172px);
+          top: calc(50% - 46px);
+        }
+        50% {
+          left: calc(50% - 243px);
+          top: 50%;
+        }
+        62.5% {
+          left: calc(50% - 172px);
+          top: calc(50% + 46px);
+        }
+        75% {
+          left: 50%;
+          top: calc(50% + 64.5px);
+        }
+        87.5% {
+          left: calc(50% + 172px);
+          top: calc(50% + 46px);
+        }
+        100% {
+          left: calc(50% + 243px);
+          top: 50%;
+        }
+      }
+
+      /* Knowledge flow pulse */
+      @keyframes knowledgeFlow {
+        0%, 100% { 
+          opacity: 0.4; 
+          box-shadow: 0 0 4px rgba(0, 255, 136, 0.3); 
+        }
+        50% { 
+          opacity: 0.8; 
+          box-shadow: 0 0 8px rgba(0, 255, 136, 0.6); 
+        }
+      }
+
+      /* Connect 4 grid cells */
+      .grid-cell {
+        position: relative;
+        background: rgba(0, 200, 100, 0.02);
+        border: 1px solid rgba(0, 200, 100, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+      }
+
+      /* Grid cell hover effect for visual feedback */
+      .grid-cell:hover {
+        background: rgba(0, 200, 100, 0.08);
+        border-color: rgba(0, 200, 100, 0.3);
+      }
+
+      /* Connect 4 spheres - exactly matching orchestrator styling */
+      .c4-sphere {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        opacity: 0;
+        animation: organizedFlow 10s linear infinite;
+        justify-self: center;
+        align-self: center;
+      }
+
+      /* Color variants exactly matching orchestrator spheres */
+      .c4-red {
+        background: radial-gradient(circle at 40% 40%, rgba(255, 100, 100, 0.9), rgba(255, 0, 0, 0.6));
+        box-shadow: 0 0 12px rgba(255, 0, 0, 0.5);
+      }
+
+      .c4-green {
+        background: radial-gradient(circle at 30% 50%, rgba(100, 255, 100, 0.9), rgba(0, 255, 0, 0.6));
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+      }
+
+      .c4-blue {
+        background: radial-gradient(circle at 50% 30%, rgba(100, 100, 255, 0.9), rgba(0, 0, 255, 0.6));
+        box-shadow: 0 0 11px rgba(0, 0, 255, 0.5);
+      }
+
+      .c4-yellow {
+        background: radial-gradient(circle at 45% 45%, rgba(255, 255, 100, 0.9), rgba(255, 200, 0, 0.6));
+        box-shadow: 0 0 10px rgba(255, 200, 0, 0.5);
+      }
+
+      .c4-purple {
+        background: radial-gradient(circle at 35% 65%, rgba(255, 100, 255, 0.9), rgba(200, 0, 200, 0.6));
+        box-shadow: 0 0 12px rgba(255, 0, 255, 0.5);
+      }
+
+      .c4-cyan {
+        background: radial-gradient(circle at 60% 40%, rgba(100, 255, 255, 0.9), rgba(0, 200, 200, 0.6));
+        box-shadow: 0 0 9px rgba(0, 255, 255, 0.5);
+      }
+
+      /* Drop and stack animation */
+      @keyframes dropAndStack {
+        0% {
+          opacity: 0;
+          transform: translateY(-200px) scale(0.5);
+        }
+        30% {
+          opacity: 1;
+          transform: translateY(0px) scale(1);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0px) scale(1);
+        }
+      }
+
+      /* Individual sphere positioning and timing */
+      .c4-sphere:nth-child(43) {
+        grid-column: 3;
+        grid-row: 6;
+        animation: dropAndStack 2s ease-out forwards;
+      }
+      .c4-sphere:nth-child(44) {
+        grid-column: 5;
+        grid-row: 6;
+        animation: dropAndStack 2s ease-out forwards;
+      }
+      .c4-sphere:nth-child(45) {
+        grid-column: 1;
+        grid-row: 6;
+        animation: dropAndStack 2s ease-out forwards;
+      }
+      .c4-sphere:nth-child(46) {
+        grid-column: 7;
+        grid-row: 6;
+        animation: dropAndStack 2s ease-out forwards;
+      }
+      .c4-sphere:nth-child(47) {
+        grid-column: 2;
+        grid-row: 6;
+        animation: dropAndStack 2s ease-out forwards;
+      }
+      .c4-sphere:nth-child(48) {
+        grid-column: 3;
+        grid-row: 5;
+        animation: dropAndStack 2s ease-out forwards;
+      }
+      .c4-sphere:nth-child(49) {
+        grid-column: 4;
+        grid-row: 6;
+        animation: dropAndStack 2s ease-out forwards;
+      }
+      .c4-sphere:nth-child(50) {
+        grid-column: 6;
+        grid-row: 6;
+        animation: dropAndStack 2s ease-out forwards;
+      }
+
+      /* Connect 4 drop animations */
+      .c4-drop {
+        animation: connect4Drop 2s ease-in forwards;
+      }
+
+      /* Connect 4 pattern match animations */
+      .c4-match {
+        animation: connect4Match 1s ease-in-out forwards;
+      }
+
+      /* Simplified sphere fill system */
+      .c4-sphere {
+        animation: sphereDrop 3s ease-out forwards;
+      }
+
+      /* Simple drop and settle animation */
+      @keyframes sphereDrop {
+        0% { 
+          opacity: 0; 
+          transform: translateY(-200px) scale(0.8); 
+        }
+        30% { 
+          opacity: 1; 
+          transform: translateY(0px) scale(1.1); 
+        }
+        50% { 
+          transform: translateY(-5px) scale(1); 
+        }
+        70% { 
+          transform: translateY(0px) scale(1); 
+        }
+        100% { 
+          opacity: 1; 
+          transform: translateY(0px) scale(1); 
+        }
+      }
+
+      /* Replacement animation for when spheres get replaced */
+      @keyframes sphereReplace {
+        0% { 
+          opacity: 1; 
+          transform: scale(1); 
+        }
+        20% { 
+          opacity: 0.7; 
+          transform: scale(1.2); 
+        }
+        40% { 
+          opacity: 0.3; 
+          transform: scale(0.8); 
+        }
+        60% { 
+          opacity: 0; 
+          transform: scale(0.5); 
+        }
+        80% { 
+          opacity: 0.7; 
+          transform: scale(1.1); 
+        }
+        100% { 
+          opacity: 1; 
+          transform: scale(1); 
+        }
       }
 
       .complex-shape-container {
@@ -2056,42 +2414,42 @@
           transform: translateX(0) scale(0.8);
         }
         10% {
-          opacity: 0.9;
+          opacity: 0.4;
           transform: translateX(5px) scale(1);
         }
         20% {
           top: 20%;
-          opacity: 0.95;
+          opacity: 0.5;
           transform: translateX(-5px) scale(1);
         }
         30% {
           top: 30%;
-          opacity: 1;
+          opacity: 0.6;
           transform: translateX(8px) scale(1);
         }
         40% {
           top: 40%;
-          opacity: 1;
+          opacity: 0.6;
           transform: translateX(-8px) scale(1);
         }
         50% {
           top: 50%;
-          opacity: 1;
+          opacity: 0.6;
           transform: translateX(10px) scale(1);
         }
         60% {
           top: 60%;
-          opacity: 1;
+          opacity: 0.6;
           transform: translateX(-10px) scale(1);
         }
         70% {
           top: 70%;
-          opacity: 0.9;
+          opacity: 0.5;
           transform: translateX(8px) scale(1);
         }
         80% {
           top: 80%;
-          opacity: 0.8;
+          opacity: 0.4;
           transform: translateX(-5px) scale(0.95);
         }
         90% {
@@ -2103,6 +2461,142 @@
           top: 105%;
           opacity: 0;
           transform: translateX(0) scale(0.8);
+        }
+      }
+
+      /* Connect 4 drop animations for different columns */
+      @keyframes c4Drop1 {
+        0% { opacity: 0; transform: translateY(-200px); }
+        10% { opacity: 1; transform: translateY(-150px); }
+        30% { transform: translateY(0px); }
+        70% { opacity: 1; transform: translateY(0px); }
+        100% { opacity: 0; transform: translateY(0px); }
+      }
+
+      @keyframes c4Drop2 {
+        0% { opacity: 0; transform: translateY(-200px); }
+        10% { opacity: 1; transform: translateY(-150px); }
+        30% { transform: translateY(20px); }
+        70% { opacity: 1; transform: translateY(20px); }
+        100% { opacity: 0; transform: translateY(20px); }
+      }
+
+      @keyframes c4Drop3 {
+        0% { opacity: 0; transform: translateY(-200px); }
+        10% { opacity: 1; transform: translateY(-150px); }
+        30% { transform: translateY(40px); }
+        70% { opacity: 1; transform: translateY(40px); }
+        100% { opacity: 0; transform: translateY(40px); }
+      }
+
+      @keyframes c4Drop4 {
+        0% { opacity: 0; transform: translateY(-200px); }
+        10% { opacity: 1; transform: translateY(-150px); }
+        30% { transform: translateY(60px); }
+        70% { opacity: 1; transform: translateY(60px); }
+        100% { opacity: 0; transform: translateY(60px); }
+      }
+
+      @keyframes c4Drop5 {
+        0% { opacity: 0; transform: translateY(-200px); }
+        10% { opacity: 1; transform: translateY(-150px); }
+        30% { transform: translateY(80px); }
+        70% { opacity: 1; transform: translateY(80px); }
+        100% { opacity: 0; transform: translateY(80px); }
+      }
+
+      @keyframes c4Drop6 {
+        0% { opacity: 0; transform: translateY(-200px); }
+        10% { opacity: 1; transform: translateY(-150px); }
+        30% { transform: translateY(100px); }
+        70% { opacity: 1; transform: translateY(100px); }
+        100% { opacity: 0; transform: translateY(100px); }
+      }
+
+      @keyframes c4Drop7 {
+        0% { opacity: 0; transform: translateY(-200px); }
+        10% { opacity: 1; transform: translateY(-150px); }
+        30% { transform: translateY(120px); }
+        70% { opacity: 1; transform: translateY(120px); }
+        100% { opacity: 0; transform: translateY(120px); }
+      }
+
+      /* Connect 4 pattern match effect */
+      @keyframes connect4Match {
+        0% { opacity: 1; transform: scale(1); box-shadow: 0 0 8px rgba(255, 255, 255, 0.6); }
+        25% { transform: scale(1.2); box-shadow: 0 0 20px rgba(255, 255, 100, 0.9); }
+        50% { transform: scale(1.4); box-shadow: 0 0 30px rgba(255, 255, 255, 1); }
+        75% { transform: scale(1.2); box-shadow: 0 0 20px rgba(255, 255, 100, 0.9); }
+        100% { opacity: 0; transform: scale(0.1); box-shadow: 0 0 0px rgba(255, 255, 255, 0); }
+      }
+
+      /* Vertical 4-in-a-row pattern - Red column 1 */
+      .c4-sphere:nth-child(43) { /* Row 6, Column 1 - Red */
+        animation: c4Drop1 8s ease-in infinite, patternClear 3s ease-in-out forwards;
+        animation-delay: 0s, 11s;
+      }
+      .c4-sphere:nth-child(45) { /* Row 5, Column 1 - Red */ 
+        animation: c4Drop1 8s ease-in infinite, patternClear 3s ease-in-out forwards;
+        animation-delay: 3s, 11s;
+      }
+      .c4-sphere:nth-child(47) { /* Row 4, Column 1 - Red */
+        animation: c4Drop1 8s ease-in infinite, patternClear 3s ease-in-out forwards;
+        animation-delay: 6s, 11s;
+      }
+      .c4-sphere:nth-child(49) { /* Row 3, Column 1 - Red */
+        animation: c4Drop1 8s ease-in infinite, patternClear 3s ease-in-out forwards;
+        animation-delay: 9s, 11s;
+      }
+
+      /* Horizontal 4-in-a-row pattern - Blue bottom row */
+      .c4-sphere:nth-child(44) { /* Row 6, Column 2 - Blue */
+        animation: c4Drop2 8s ease-in infinite, patternClear 3s ease-in-out forwards;
+        animation-delay: 1.5s, 16s;
+      }
+      .c4-sphere:nth-child(48) { /* Row 6, Column 5 - Blue */
+        animation: c4Drop5 8s ease-in infinite, patternClear 3s ease-in-out forwards;
+        animation-delay: 10.5s, 16s;
+      }
+      .c4-sphere:nth-child(50) { /* Row 6, Column 6 - Blue */
+        animation: c4Drop6 8s ease-in infinite, patternClear 3s ease-in-out forwards;
+        animation-delay: 12s, 16s;
+      }
+      .c4-sphere:nth-child(52) { /* Row 6, Column 7 - Blue */
+        animation: c4Drop7 8s ease-in infinite, patternClear 3s ease-in-out forwards;
+        animation-delay: 13.5s, 16s;
+      }
+
+      /* Pattern clearing sequence */
+      .pattern-clear {
+        animation: patternClear 3s ease-in-out forwards;
+      }
+
+      @keyframes patternClear {
+        0% { opacity: 1; transform: scale(1); }
+        20% { 
+          transform: scale(1.3); 
+          box-shadow: 0 0 25px rgba(255, 255, 100, 1);
+          filter: brightness(1.5);
+        }
+        40% { 
+          transform: scale(1.5); 
+          box-shadow: 0 0 35px rgba(255, 255, 255, 1);
+          filter: brightness(2);
+        }
+        60% { 
+          transform: scale(1.2); 
+          box-shadow: 0 0 20px rgba(255, 255, 100, 0.8);
+          filter: brightness(1.5);
+        }
+        80% { 
+          transform: scale(0.8); 
+          opacity: 0.5;
+          box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+        }
+        100% { 
+          opacity: 0; 
+          transform: scale(0.1); 
+          box-shadow: none;
         }
       }
       
@@ -2484,7 +2978,7 @@
                 <div class="node node-7"></div>
                 <div class="node node-8"></div>
                 <div class="node node-9"></div>
-
+                
                 <div class="connection connection-1"></div>
                 <div class="connection connection-2"></div>
                 <div class="connection connection-3"></div>
@@ -2495,7 +2989,7 @@
                 <div class="connection connection-8"></div>
                 <div class="connection connection-9"></div>
                 <div class="connection connection-10"></div>
-
+                
                 <div class="graph-particles">
                   <div class="graph-particle"></div>
                   <div class="graph-particle"></div>
@@ -2736,40 +3230,31 @@
                   <div class="organized-sphere"></div>
                 </div>
 
-                <!-- Knowledge tier logo system -->
+                <!-- Knowledge tier - Orbital System from orbits.html -->
                 <div class="knowledge-particles">
-                  <div class="logo-symbol knowledge-logo">
-                    <div class="aura"></div>
-                    <div class="graph-container">
-                      <div class="node node-1"></div>
-                      <div class="node node-2"></div>
-                      <div class="node node-3"></div>
-                      <div class="node node-4"></div>
-                      <div class="node node-5"></div>
-                      <div class="node node-6"></div>
-                      <div class="node node-7"></div>
-                      <div class="node node-8"></div>
-                      <div class="node node-9"></div>
-                      <div class="connection connection-1"></div>
-                      <div class="connection connection-2"></div>
-                      <div class="connection connection-3"></div>
-                      <div class="connection connection-4"></div>
-                      <div class="connection connection-5"></div>
-                      <div class="connection connection-6"></div>
-                      <div class="connection connection-7"></div>
-                      <div class="connection connection-8"></div>
-                      <div class="connection connection-9"></div>
-                      <div class="connection connection-10"></div>
-                      <div class="graph-particles">
-                        <div class="graph-particle"></div>
-                        <div class="graph-particle"></div>
-                        <div class="graph-particle"></div>
-                        <div class="graph-particle"></div>
-                        <div class="graph-particle"></div>
-                        <div class="graph-particle"></div>
-                        <div class="graph-particle"></div>
-                        <div class="graph-particle"></div>
-                      </div>
+                  <div class="knowledge-logo-container">
+                    <div class="knowledge-orbital-system">
+                      <div class="knowledge-central-sphere"></div>
+                      
+                      <div class="knowledge-orbit-ring knowledge-orbit-ring-1"></div>
+                      <div class="knowledge-orbit-ring knowledge-orbit-ring-2"></div>
+                      <div class="knowledge-orbit-ring knowledge-orbit-ring-3"></div>
+                      
+                      <!-- Inner ring spheres -->
+                      <div class="knowledge-dropping-sphere knowledge-inner-sphere-1"></div>
+                      <div class="knowledge-dropping-sphere knowledge-inner-sphere-2"></div>
+                      
+                      <!-- Middle ring spheres -->
+                      <div class="knowledge-dropping-sphere knowledge-middle-sphere-1"></div>
+                      <div class="knowledge-dropping-sphere knowledge-middle-sphere-2"></div>
+                      <div class="knowledge-dropping-sphere knowledge-middle-sphere-3"></div>
+                      
+                      <!-- Outer ring spheres -->
+                      <div class="knowledge-dropping-sphere knowledge-outer-sphere-1"></div>
+                      <div class="knowledge-dropping-sphere knowledge-outer-sphere-2"></div>
+                      <div class="knowledge-dropping-sphere knowledge-outer-sphere-3"></div>
+                      <div class="knowledge-dropping-sphere knowledge-outer-sphere-4"></div>
+                      <div class="knowledge-dropping-sphere knowledge-outer-sphere-5"></div>
                     </div>
                   </div>
                 </div>
@@ -2898,5 +3383,170 @@
         </div>
       </div>
     </section>
+
+    <script>
+      // Knowledge Logo Animation System - Logo Recreation
+      // The CSS handles all animations, JavaScript just adds pulsing
+      
+      /*
+      // Legacy KnowledgeGraph class - no longer used
+      class KnowledgeGraph {
+        constructor() {
+          this.container = document.getElementById('knowledgeGraph');
+          if (!this.container) return;
+          
+          this.spheres = [];
+          this.connections = [];
+          this.colors = [
+            'radial-gradient(circle at 40% 40%, rgba(255, 100, 100, 0.9), rgba(255, 0, 0, 0.6))',
+            'radial-gradient(circle at 30% 50%, rgba(100, 255, 100, 0.9), rgba(0, 255, 0, 0.6))',
+            'radial-gradient(circle at 50% 30%, rgba(100, 100, 255, 0.9), rgba(0, 0, 255, 0.6))',
+            'radial-gradient(circle at 45% 45%, rgba(255, 255, 100, 0.9), rgba(255, 200, 0, 0.6))',
+            'radial-gradient(circle at 35% 65%, rgba(255, 100, 255, 0.9), rgba(200, 0, 200, 0.6))',
+            'radial-gradient(circle at 60% 40%, rgba(100, 255, 255, 0.9), rgba(0, 200, 200, 0.6))'
+          ];
+          this.boxShadows = [
+            '0 0 12px rgba(255, 0, 0, 0.5)',
+            '0 0 10px rgba(0, 255, 0, 0.5)',
+            '0 0 11px rgba(0, 0, 255, 0.5)',
+            '0 0 10px rgba(255, 200, 0, 0.5)',
+            '0 0 12px rgba(255, 0, 255, 0.5)',
+            '0 0 9px rgba(0, 255, 255, 0.5)'
+          ];
+          
+          this.init();
+        }
+        
+        init() {
+          // Create 15 spheres across the container
+          this.createSpheres();
+          // Start the animation sequence
+          this.startAnimation();
+        }
+        
+        createSpheres() {
+          const rect = this.container.getBoundingClientRect();
+          const spherePositions = [
+            // Spread spheres across full width with some vertical variation
+            {x: 0.1, y: 0.7}, {x: 0.25, y: 0.3}, {x: 0.4, y: 0.8}, {x: 0.55, y: 0.2}, {x: 0.7, y: 0.6},
+            {x: 0.85, y: 0.4}, {x: 0.15, y: 0.5}, {x: 0.35, y: 0.1}, {x: 0.5, y: 0.9}, {x: 0.65, y: 0.35},
+            {x: 0.8, y: 0.75}, {x: 0.05, y: 0.25}, {x: 0.95, y: 0.55}, {x: 0.3, y: 0.65}, {x: 0.75, y: 0.15}
+          ];
+          
+          spherePositions.forEach((pos, index) => {
+            const sphere = document.createElement('div');
+            sphere.className = 'knowledge-sphere';
+            
+            const colorIndex = index % this.colors.length;
+            sphere.style.background = this.colors[colorIndex];
+            sphere.style.boxShadow = this.boxShadows[colorIndex];
+            
+            // Position relative to container
+            sphere.style.left = `${pos.x * 100}%`;
+            sphere.style.top = `${pos.y * 100}%`;
+            sphere.style.transform = 'translate(-50%, -50%)';
+            
+            this.container.appendChild(sphere);
+            this.spheres.push({
+              element: sphere,
+              x: pos.x,
+              y: pos.y,
+              index: index
+            });
+          });
+        }
+        
+        startAnimation() {
+          // Phase 1: Drop spheres (0-5s)
+          this.spheres.forEach((sphere, index) => {
+            setTimeout(() => {
+              this.dropSphere(sphere);
+            }, index * 300 + Math.random() * 200);
+          });
+          
+          // Phase 2: Create connections (6-10s)
+          setTimeout(() => {
+            this.createConnections();
+          }, 6000);
+          
+          // Phase 3: Add pulsing (10s+)
+          setTimeout(() => {
+            this.startPulsing();
+          }, 10000);
+        }
+        
+        dropSphere(sphere) {
+          // Animate sphere dropping
+          sphere.element.style.transition = 'opacity 0.5s ease, transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          sphere.element.style.transform = 'translate(-50%, -50%) translateY(-200px)';
+          
+          setTimeout(() => {
+            sphere.element.style.opacity = '0.6';
+            sphere.element.style.transform = 'translate(-50%, -50%) translateY(0)';
+          }, 50);
+        }
+        
+        createConnections() {
+          const rect = this.container.getBoundingClientRect();
+          
+          // Create connections between nearby spheres
+          this.spheres.forEach((sphere1, i) => {
+            this.spheres.forEach((sphere2, j) => {
+              if (i >= j) return;
+              
+              const dx = sphere1.x - sphere2.x;
+              const dy = sphere1.y - sphere2.y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+              
+              // Connect spheres within reasonable distance
+              if (distance < 0.4) {
+                setTimeout(() => {
+                  this.drawConnection(sphere1, sphere2, rect);
+                }, Math.random() * 2000);
+              }
+            });
+          });
+        }
+        
+        drawConnection(sphere1, sphere2, rect) {
+          const connection = document.createElement('div');
+          connection.className = 'knowledge-connection';
+          
+          const x1 = sphere1.x * rect.width;
+          const y1 = sphere1.y * rect.height;
+          const x2 = sphere2.x * rect.width;
+          const y2 = sphere2.y * rect.height;
+          
+          const dx = x2 - x1;
+          const dy = y2 - y1;
+          const length = Math.sqrt(dx * dx + dy * dy);
+          const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+          
+          connection.style.left = `${sphere1.x * 100}%`;
+          connection.style.top = `${sphere1.y * 100}%`;
+          connection.style.width = `${length}px`;
+          connection.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+          connection.style.animation = 'drawConnection 1.5s ease-out forwards';
+          
+          this.container.appendChild(connection);
+          this.connections.push(connection);
+        }
+        
+        startPulsing() {
+          this.connections.forEach((connection, index) => {
+            setTimeout(() => {
+              connection.style.animation += ', knowledgeFlow 3s ease-in-out infinite';
+            }, index * 200);
+          });
+        }
+      }
+      */
+      
+      // Initialize when DOM is loaded
+      document.addEventListener('DOMContentLoaded', () => {
+        // No additional JavaScript needed for orbital system
+        // CSS handles all animations
+      });
+    </script>
   </body>
 </html>
